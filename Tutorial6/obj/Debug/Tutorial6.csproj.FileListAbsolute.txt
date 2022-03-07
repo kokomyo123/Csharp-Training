@@ -1,0 +1,2 @@
+D:\Csharp-Training\Csharp-Training\Tutorial6\obj\Debug\Tutorial6.csproj.AssemblyReference.cache
+D:\Csharp-Training\Csharp-Training\Tutorial6\obj\Debug\Tutorial6.csproj.CoreCompileInputs.cache
