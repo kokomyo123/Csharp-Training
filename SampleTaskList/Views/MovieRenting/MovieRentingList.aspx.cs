@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,11 +8,12 @@ namespace SampleTaskList.Views.MovieRenting
 {
     public partial class MovieRentingList : System.Web.UI.Page
     {
-        Models.MovieRenting.MovieRent movierentmodel = new Models.MovieRenting.MovieRent();
-        Services.MovieRenting.MovieRentService movierentservice = new Services.MovieRenting.MovieRentService();
-        DataTable da = new DataTable();
+        private Models.MovieRenting.MovieRent movierentmodel = new Models.MovieRenting.MovieRent();
+        private Services.MovieRenting.MovieRentService movierentservice = new Services.MovieRenting.MovieRentService();
+        private DataTable da = new DataTable();
 
         #region bind data
+
         /// <summary>
         /// bind data
         /// </summary>
@@ -31,11 +30,11 @@ namespace SampleTaskList.Views.MovieRenting
                 GetData();
             }
         }
-        #endregion
 
-        
+        #endregion bind data
 
         #region Get Data
+
         /// <summary>
         /// Get Data
         /// </summary>
@@ -54,9 +53,10 @@ namespace SampleTaskList.Views.MovieRenting
             }
         }
 
-        #endregion
+        #endregion Get Data
 
         #region search movierent
+
         /// <summary>
         /// search movierent
         /// </summary>
@@ -77,9 +77,11 @@ namespace SampleTaskList.Views.MovieRenting
                 grvMovieRent.DataBind();
             }
         }
-        #endregion
+
+        #endregion search movierent
 
         #region movierent add,update,delete
+
         /// <summary>
         /// go to creat page
         /// </summary>
@@ -126,10 +128,36 @@ namespace SampleTaskList.Views.MovieRenting
             Response.Redirect("MovieRentingCreate.aspx?id=" + id);
         }
 
-        #endregion
+        #endregion movierent add,update,delete
 
+        #region export to excel
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            grvMovieRent.Columns[5].Visible = false;
+            grvMovieRent.Columns[6].Visible = false;
+
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                {
+                    grvMovieRent.AllowPaging = false;
+                    GetData();
+                    grvMovieRent.RenderControl(hw);
+                    string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
+                    StreamWriter writer = File.AppendText(filename);
+                    writer.WriteLine(sw.ToString());
+                    writer.Close();
+                }
+            }
+            Session["alert"] = "file downloaded successfully";
+            Session["alert-type"] = "success";
+        }
+
+        #endregion export to excel
 
         #region paging
+
         /// <summary>
         /// paging
         /// </summary>
@@ -140,6 +168,7 @@ namespace SampleTaskList.Views.MovieRenting
             grvMovieRent.PageIndex = e.NewPageIndex;
             this.GetData();
         }
-        #endregion
+
+        #endregion paging
     }
 }

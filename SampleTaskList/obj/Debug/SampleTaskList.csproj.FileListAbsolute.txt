@@ -78,3 +78,7 @@ D:\Webproject\SCMTraining\Day1\csharp_training\SampleTaskList\bin\Models.dll
 D:\Webproject\SCMTraining\Day1\csharp_training\SampleTaskList\bin\Services.dll
 D:\Webproject\SCMTraining\Day1\csharp_training\SampleTaskList\bin\Models.pdb
 D:\Webproject\SCMTraining\Day1\csharp_training\SampleTaskList\bin\Services.pdb
+D:\Csharp-Training\Csharp-Training\SampleTaskList\obj\Debug\SampleTaskList.csproj.AssemblyReference.cache
+D:\Csharp-Training\Csharp-Training\SampleTaskList\obj\Debug\SampleTaskList.csproj.CoreCompileInputs.cache
+D:\Csharp-Training\Csharp-Training\SampleTaskList\obj\Debug\SampleTaskList.dll
+D:\Csharp-Training\Csharp-Training\SampleTaskList\obj\Debug\SampleTaskList.pdb

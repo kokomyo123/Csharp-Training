@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.OleDb;
+using System.Configuration;
+using System.IO;
+using System.Data;
 
 namespace SampleTaskList.Views.Movie
 {
@@ -15,6 +18,7 @@ namespace SampleTaskList.Views.Movie
         DataTable da = new DataTable();
 
         #region data bind
+
         /// <summary>
         /// data bind
         /// </summary>
@@ -31,9 +35,11 @@ namespace SampleTaskList.Views.Movie
                 GetData();
             }
         }
-        #endregion
+
+        #endregion data bind
 
         #region Get Data
+
         /// <summary>
         /// Get Data
         /// </summary>
@@ -52,10 +58,10 @@ namespace SampleTaskList.Views.Movie
             }
         }
 
-        #endregion
-
+        #endregion Get Data
 
         #region search movie
+
         /// <summary>
         /// search movie
         /// </summary>
@@ -63,7 +69,7 @@ namespace SampleTaskList.Views.Movie
         /// <param name="e"></param>
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-             da = Services.Movie.MovieService.GetSearchData(txtSearch.Text);
+            da = Services.Movie.MovieService.GetSearchData(txtSearch.Text);
             if (da.Rows.Count > 0)
             {
                 grvMovie.DataSource = da;
@@ -76,9 +82,11 @@ namespace SampleTaskList.Views.Movie
                 grvMovie.DataBind();
             }
         }
-        #endregion
+
+        #endregion search movie
 
         #region movie add,update,delete
+
         /// <summary>
         /// go to add page
         /// </summary>
@@ -124,9 +132,59 @@ namespace SampleTaskList.Views.Movie
             int id = Convert.ToInt32(grvMovie.DataKeys[e.RowIndex].Value);
             Response.Redirect("MovieCreate.aspx?id=" + id);
         }
-        #endregion
+
+        #endregion movie add,update,delete
+
+        #region import to excel
+
+        /// <summary>
+        /// getting data from excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            string excelfilepath = Server.MapPath("~/Upload/Movielist.xlsx");
+            if (File.Exists(excelfilepath))
+            {
+                ImoprtExceltoGridView(excelfilepath, ".xlsx", "Yes");
+            }
+            else
+            {
+                Response.Write("There is no file to read");
+            }
+        }
+
+        /// <summary>
+        /// importing excel to gridview
+        /// </summary>
+        /// <param name="File"></param>
+        /// <param name="extension"></param>
+        /// <param name="ishdr"></param>
+        public void ImoprtExceltoGridView(string File, string extension, string ishdr)
+        {
+            string connectionStr = ConfigurationManager.ConnectionStrings["Excelconnection"].ConnectionString;
+            connectionStr = String.Format(connectionStr, File, ishdr);
+            OleDbConnection con = new OleDbConnection(connectionStr);
+            OleDbCommand cmd = new OleDbCommand();
+            OleDbDataAdapter oda = new OleDbDataAdapter();
+            DataTable dt = new DataTable();
+            cmd.Connection = con;
+            con.Open();
+            DataTable dtexcel = con.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+            string sheetname = dtexcel.Rows[0]["TABLE_NAME"].ToString();
+            cmd.CommandText = "Select * from [" + sheetname + "]";
+            oda.SelectCommand = cmd;
+            oda.Fill(dt);
+            con.Close();
+            grvMovie.DataSource = dt;
+            grvMovie.DataBind();
+        }
+
+        #endregion import to excel
 
         #region paging
+
         /// <summary>
         /// paging
         /// </summary>
@@ -137,6 +195,7 @@ namespace SampleTaskList.Views.Movie
             grvMovie.PageIndex = e.NewPageIndex;
             this.GetData();
         }
-        #endregion
+
+        #endregion paging
     }
 }

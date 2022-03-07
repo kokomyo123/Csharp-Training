@@ -1,20 +1,24 @@
-﻿
-
-.nav-link {
+﻿.nav-link {
     color: black;
     font-size: 18px;
     font-weight: bold;
 }
-.navbarlink ul li a{
-   padding:30px;
+
+.navbarlink ul li a {
+    padding: 30px;
+}
+
+.btn-excel {
+    background-color: red;
 }
 
 footer {
     padding: 18px;
-    margin-top:30px;
+    margin-top: 30px;
 }
-.list-sec{
-   padding-top:40px;
+
+.list-sec {
+    padding-top: 40px;
 }
 
 .loginform {
@@ -24,17 +28,19 @@ footer {
     box-shadow: 1px 2px 44px -1px rgba(0,0,0,0.75);
     border-radius: 20px;
     width: 40%;
-    margin:150px auto;
-    background-color:#ffffff;
-}
-.login-body{
-    background-color:aquamarine;
+    margin: 150px auto;
+    background-color: #ffffff;
 }
 
-.fill{
-    font-size:20px;
+.login-body {
+    background-color: aquamarine;
+}
+
+.fill {
+    font-size: 20px;
     color: red;
 }
+
 .pagination-ys {
     /*display: inline-block;*/
     padding-left: 0;
@@ -94,9 +100,3 @@ footer {
             background-color: #eeeeee;
             border-color: #dddddd;
         }
-
-
-
-
-
-
