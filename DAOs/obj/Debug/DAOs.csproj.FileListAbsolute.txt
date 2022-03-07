@@ -1,0 +1,9 @@
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\bin\Debug\DAOs.dll
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\bin\Debug\DAOs.pdb
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\bin\Debug\Models.dll
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\bin\Debug\Models.pdb
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.csprojAssemblyReference.cache
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.csproj.CoreCompileInputs.cache
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.csproj.CopyComplete
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.dll
+D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.pdb
