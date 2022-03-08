@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Models;
 
 namespace DAOs.Salutation
 {
     public class SalutationDao
     {
-        #region Insert/Update/Delete
 
+        #region Insert/Update/Delete
         /// <summary>
         /// Insert Data
         /// </summary>
@@ -18,7 +23,7 @@ namespace DAOs.Salutation
             {
                 var arr = new object[2];
                 arr[0] = salutation.SALUTATION;
-                bool num = Common.HelperDao.Insert(arr, "salutation", "tbl_salutation");
+               bool num = Common.HelperDao.Insert(arr, "salutation", "tbl_salutation");
                 if (num)
                 {
                     return true;
@@ -69,11 +74,10 @@ namespace DAOs.Salutation
                 throw ex;
             }
         }
+        #endregion
 
-        #endregion Insert/Update/Delete
 
         #region Get Data
-
         /// <summary>
         /// Get Data
         /// </summary>
@@ -98,7 +102,7 @@ namespace DAOs.Salutation
         {
             try
             {
-                return Common.HelperDao.GetData("Select id,salutation from tbl_salutation", CommandType.Text);
+              return Common.HelperDao.GetData("Select id,salutation from tbl_salutation", CommandType.Text);
             }
             catch (Exception ex)
             {
@@ -145,6 +149,6 @@ namespace DAOs.Salutation
             }
         }
 
-        #endregion Get Data
+        #endregion
     }
 }

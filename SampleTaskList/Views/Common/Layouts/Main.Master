@@ -89,10 +89,10 @@
 
     <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
     <script type="text/javascript">
-           function HideLabel() {
-               document.getElementById("AlertMsg").style.display = "none";
-           }
-           setTimeout("HideLabel();", 3000);
+        function HideLabel() {
+            document.getElementById("AlertMsg").style.display = "none";
+        }
+        setTimeout("HideLabel();", 3000);
     </script>
 </body>
 </html>

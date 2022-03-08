@@ -28,7 +28,7 @@
 
         <div class="row">
 
-            <div class="col-md-5 col-md-offset-2">
+            <div class="col-md-5 col-md-offset-1">
                 <div class="form-group row">
                     <label for="txtSearch" class="col-sm-4 col-form-label text-info">Customer Name</label>
                     <div class="col-sm-6">

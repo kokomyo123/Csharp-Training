@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SampleTaskList.Views.Movie
 {
     public partial class MovieCreate : System.Web.UI.Page
     {
-        #region Variable Declaration
+        #region variable declaration
 
         private Models.Movie.Movie moviemodel = new Models.Movie.Movie();
         private Services.Movie.MovieService movieservice = new Services.Movie.MovieService();
         private DataTable da = new DataTable();
 
-        #endregion Variable Declaration
+        #endregion variable declaration
 
         #region binding data and getting data
 

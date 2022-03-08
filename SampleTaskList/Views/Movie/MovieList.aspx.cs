@@ -240,12 +240,6 @@ namespace SampleTaskList.Views.Movie
             return exist;
         }
 
-        /// <summary>
-        /// check vaild
-        /// </summary>
-        /// <param name="myreader"></param>
-        /// <param name="stval"></param>
-        /// <returns></returns>
         protected string valid(OleDbDataReader myreader, int stval) //if any columns are found null then they are replaced by zero
         {
             object val = myreader[stval];

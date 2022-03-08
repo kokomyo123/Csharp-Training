@@ -4,7 +4,7 @@ namespace Models.Customer
 {
     public class Customer
     {
-        #region Local and Constant  variable Declaration
+        #region Local variable and Constant Declaration
 
         /// <summary>
         /// Customer Variables
@@ -15,7 +15,7 @@ namespace Models.Customer
         private string _fullname;
         private string _address;
 
-        #endregion Local and Constant  variable Declaration
+        #endregion Local variable and Constant Declaration
 
         #region Constructor and Destructor
 

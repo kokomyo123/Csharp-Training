@@ -134,37 +134,6 @@ namespace SampleTaskList.Views.MovieRenting
 
         #endregion movierent add,update,delete
 
-        #region export to excel
-
-        /// <summary>
-        /// Export to Excel
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btnExcel_Click(object sender, EventArgs e)
-        {
-            grvMovieRent.Columns[5].Visible = false;
-            grvMovieRent.Columns[6].Visible = false;
-
-            using (StringWriter sw = new StringWriter())
-            {
-                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
-                {
-                    grvMovieRent.AllowPaging = false;
-                    GetData();
-                    grvMovieRent.RenderControl(hw);
-                    string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
-                    StreamWriter writer = File.AppendText(filename);
-                    writer.WriteLine(sw.ToString());
-                    writer.Close();
-                }
-            }
-            Session["alert"] = "file downloaded successfully";
-            Session["alert-type"] = "success";
-        }
-
-        #endregion export to excel
-
         #region paging
 
         /// <summary>
@@ -179,5 +148,61 @@ namespace SampleTaskList.Views.MovieRenting
         }
 
         #endregion paging
+
+        #region export database data to excel
+
+        /// <summary>
+        /// exporting data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            da = Services.MovieRenting.MovieRentService.GetSearchData(txtSearch.Text);
+            string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
+            ExportToExcel(da, filename);
+        }
+
+        /// <summary>
+        /// export to excel
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="filePath"></param>
+        private void ExportToExcel(DataTable table, string filePath)
+        {
+            StreamWriter Strwriter = new StreamWriter(filePath, false);
+            Strwriter.Write(@"<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.0 Transitional//EN"">");
+            Strwriter.Write("<font style='font-size:15.0pt; font-family:TimesNewRoman;'>");
+            Strwriter.Write("<BR><BR><BR>");
+            Strwriter.Write("<Table border='2' bgColor='#ffffff' borderColor='#000000' cellSpacing='0' cellPadding='0' style='font-size:15.0pt; font-family:TimesNewRoman; background:white;'> <TR>");
+            int dtcolumncount = table.Columns.Count;
+            for (int j = 0; j < dtcolumncount; j++)
+            {
+                Strwriter.Write("<Td style='background:aquamarine;'>");
+                Strwriter.Write("<B>");
+                Strwriter.Write(table.Columns[j].ToString());
+                Strwriter.Write("</B>");
+                Strwriter.Write("</Td>");
+            }
+            Strwriter.Write("</TR>");
+            foreach (DataRow row in table.Rows)
+            {
+                Strwriter.Write("<TR>");
+                for (int i = 0; i < table.Columns.Count; i++)
+                {
+                    Strwriter.Write("<Td>");
+                    Strwriter.Write(row[i].ToString());
+                    Strwriter.Write("</Td>");
+                }
+                Strwriter.Write("</TR>");
+            }
+            Strwriter.Write("</Table>");
+            Strwriter.Write("</font>");
+            Strwriter.Close();
+            Session["alert"] = "successfully exported";
+            Session["alert-type"] = "success";
+        }
+
+        #endregion export database data to excel
     }
 }
