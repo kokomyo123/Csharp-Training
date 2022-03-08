@@ -1,0 +1,9 @@
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\bin\Debug\DataAccess.dll
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\bin\Debug\DataAccess.pdb
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\bin\Debug\BusinessObject.dll
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\bin\Debug\BusinessObject.pdb
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\obj\Debug\DataAccess.dll
+D:\Webproject\SCMTraining\Day1\csharp_training\DataAccess\obj\Debug\DataAccess.pdb
