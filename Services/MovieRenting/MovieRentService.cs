@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.MovieRenting
 {
     public class MovieRentService
     {
         #region Insert/Update/Delete
+
         /// <summary>
         /// Insert Data
         /// </summary>
@@ -56,17 +53,19 @@ namespace Services.MovieRenting
                 throw ex;
             }
         }
-        #endregion
 
-        #region Get Data      
+        #endregion Insert/Update/Delete
+
+        #region Get Data
+
         /// <summary>
         /// Get Data
         /// </summary>
-        public static DataTable GetData(int movieid,int customerid)
+        public static DataTable GetData(int movieid, int customerid)
         {
             try
             {
-                return DAOs.MovieRenting.MovieRentDao.GetData(movieid,customerid);
+                return DAOs.MovieRenting.MovieRentDao.GetData(movieid, customerid);
             }
             catch (Exception ex)
             {
@@ -118,6 +117,7 @@ namespace Services.MovieRenting
                 throw ex;
             }
         }
-        #endregion
+
+        #endregion Get Data
     }
 }

@@ -8,9 +8,13 @@ namespace SampleTaskList.Views.MovieRenting
 {
     public partial class MovieRentingList : System.Web.UI.Page
     {
+        #region variable declaration
+
         private Models.MovieRenting.MovieRent movierentmodel = new Models.MovieRenting.MovieRent();
         private Services.MovieRenting.MovieRentService movierentservice = new Services.MovieRenting.MovieRentService();
         private DataTable da = new DataTable();
+
+        #endregion variable declaration
 
         #region bind data
 
@@ -132,6 +136,11 @@ namespace SampleTaskList.Views.MovieRenting
 
         #region export to excel
 
+        /// <summary>
+        /// Export to Excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnExcel_Click(object sender, EventArgs e)
         {
             grvMovieRent.Columns[5].Visible = false;

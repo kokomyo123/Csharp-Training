@@ -1,24 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Movie
 {
     public class Movie
     {
         #region Local variable and Constant Declaration
+
         /// <summary>
         /// Movie Variables
-        /// </summary>		
+        /// </summary>
         private int _id;
+
         private string _movie;
-        #endregion
+
+        #endregion Local variable and Constant Declaration
 
         #region Constructor and Destructor
+
         /// <summary>
-        ///Constructor and Destructor for Movie Variables 
+        ///Constructor and Destructor for Movie Variables
         /// </summary>
         public void PostData()
         {
@@ -31,9 +31,11 @@ namespace Models.Movie
             _id = id;
             _movie = movie;
         }
-        #endregion
+
+        #endregion Constructor and Destructor
 
         #region Properties Assigning and Retrieving
+
         /// <summary>
         /// Gets or sets the <b>_ID</b> attribute value.
         /// </summary>
@@ -67,6 +69,6 @@ namespace Models.Movie
             }
         }
 
-        #endregion
+        #endregion Properties Assigning and Retrieving
     }
 }

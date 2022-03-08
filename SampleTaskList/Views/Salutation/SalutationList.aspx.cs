@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DAOs;
+
 namespace SampleTaskList.Views.Salutation
 {
     public partial class SalutationCreate : System.Web.UI.Page
     {
+        #region variable declaration
 
-        Models.Salutation.Salutation salutationmodel = new Models.Salutation.Salutation();
-        Services.Salutation.SalutationService salutationservice = new Services.Salutation.SalutationService();
-        DataTable da = new DataTable();
+        private Models.Salutation.Salutation salutationmodel = new Models.Salutation.Salutation();
+        private Services.Salutation.SalutationService salutationservice = new Services.Salutation.SalutationService();
+        private DataTable da = new DataTable();
+
+        #endregion variable declaration
 
         #region bind data
+
         /// <summary>
         /// bind data
         /// </summary>
@@ -32,15 +33,17 @@ namespace SampleTaskList.Views.Salutation
                 GetData();
             }
         }
-        #endregion
+
+        #endregion bind data
 
         #region Get Data
+
         /// <summary>
         /// Get Data
         /// </summary>
         public void GetData()
         {
-          da = Services.Salutation.SalutationService.GetAllData();
+            da = Services.Salutation.SalutationService.GetAllData();
             if (da.Rows.Count > 0)
             {
                 grvSalutation.DataSource = da;
@@ -53,10 +56,10 @@ namespace SampleTaskList.Views.Salutation
             }
         }
 
-        #endregion
-
+        #endregion Get Data
 
         #region Salutation Add,Update,Delete
+
         /// <summary>
         /// Add Salutation
         /// </summary>
@@ -103,10 +106,10 @@ namespace SampleTaskList.Views.Salutation
             }
         }
 
-        #endregion
-
+        #endregion Salutation Add,Update,Delete
 
         #region search salutation
+
         /// <summary>
         /// Search salutation
         /// </summary>
@@ -128,9 +131,10 @@ namespace SampleTaskList.Views.Salutation
             }
         }
 
-        #endregion
+        #endregion search salutation
 
         #region paging
+
         /// <summary>
         /// Paging
         /// </summary>
@@ -138,9 +142,10 @@ namespace SampleTaskList.Views.Salutation
         /// <param name="e"></param>
         protected void grvSalutation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-           grvSalutation.PageIndex = e.NewPageIndex;
+            grvSalutation.PageIndex = e.NewPageIndex;
             this.GetData();
         }
-        #endregion
+
+        #endregion paging
     }
 }

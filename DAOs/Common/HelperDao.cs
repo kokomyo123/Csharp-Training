@@ -1,27 +1,26 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAOs.Common
 {
     public class HelperDao
     {
         #region DB Connection
+
         /// <summary>
-        /// Database Connection 
+        /// Database Connection
         /// </summary>
-        static string dbConnectionString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+        private static string dbConnectionString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+
         public static DataTable tblResult;
         public static string sInsertItem = String.Empty;
-        #endregion
+
+        #endregion DB Connection
 
         #region Insert/Delete/Update(Common)
+
         /// <summary>
         /// Insert Data
         /// <paramref name="arr"/>
@@ -69,7 +68,7 @@ namespace DAOs.Common
                 tblResult = null;
                 throw ex;
             }
-         }
+        }
 
         /// <summary>
         /// Update Data
@@ -170,9 +169,11 @@ namespace DAOs.Common
                 conn.Dispose();
             }
         }
-        #endregion
+
+        #endregion Insert/Delete/Update(Common)
 
         #region Get Data
+
         /// <summary>
         /// Get Data
         /// <paramref name="commandText"/>
@@ -209,9 +210,9 @@ namespace DAOs.Common
             cn.ConnectionString = dbConnectionString;
             cn.Open();
             var cmd = new SqlCommand(commandText, cn);
-           try
+            try
             {
-               SqlDataReader dr = cmd.ExecuteReader();
+                SqlDataReader dr = cmd.ExecuteReader();
                 return dr;
             }
             catch (Exception ex)
@@ -220,6 +221,7 @@ namespace DAOs.Common
                 throw ex;
             }
         }
-        #endregion
+
+        #endregion Get Data
     }
 }

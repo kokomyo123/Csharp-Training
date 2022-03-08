@@ -11,11 +11,16 @@ namespace SampleTaskList.Views.Movie
 {
     public partial class MovieCreate : System.Web.UI.Page
     {
-        Models.Movie.Movie moviemodel = new Models.Movie.Movie();
-        Services.Movie.MovieService movieservice = new Services.Movie.MovieService();
-        DataTable da = new DataTable();
+        #region Variable Declaration
+
+        private Models.Movie.Movie moviemodel = new Models.Movie.Movie();
+        private Services.Movie.MovieService movieservice = new Services.Movie.MovieService();
+        private DataTable da = new DataTable();
+
+        #endregion Variable Declaration
 
         #region binding data and getting data
+
         /// <summary>
         /// binding data and getting data
         /// </summary>
@@ -49,19 +54,23 @@ namespace SampleTaskList.Views.Movie
                 }
             }
         }
-        #endregion
+
+        #endregion binding data and getting data
 
         #region InsertData
+
         /// <summary>
         /// InsertData
         /// </summary>
         private void InsertData()
         {
-           moviemodel.MOVIE = txtMovie.Text;
+            moviemodel.MOVIE = txtMovie.Text;
         }
-        #endregion
+
+        #endregion InsertData
 
         #region UpdateData
+
         /// <summary>
         /// UpdateData
         /// </summary>
@@ -70,9 +79,11 @@ namespace SampleTaskList.Views.Movie
             moviemodel.ID = Convert.ToInt32(hfMovie.Value);
             moviemodel.MOVIE = txtMovie.Text;
         }
-        #endregion
+
+        #endregion UpdateData
 
         #region creating and updating movie
+
         /// <summary>
         /// creating and updating movie
         /// </summary>
@@ -136,9 +147,11 @@ namespace SampleTaskList.Views.Movie
                 }
             }
         }
-        #endregion
+
+        #endregion creating and updating movie
 
         #region clear and back
+
         /// <summary>
         /// clear form
         /// </summary>
@@ -159,6 +172,6 @@ namespace SampleTaskList.Views.Movie
             Response.Redirect("MovieList.aspx");
         }
 
-        #endregion
+        #endregion clear and back
     }
 }

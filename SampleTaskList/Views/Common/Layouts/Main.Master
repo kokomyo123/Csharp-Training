@@ -4,97 +4,95 @@
 
 <html>
 <head runat="server">
-   
+
     <title>Movie Renting</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
-   
     </asp:ContentPlaceHolder>
-  
-     
-     <link href="<%=Page.ResolveUrl("~/Resources/css/lib/bootstrap.min.css")%>" rel="stylesheet">
+
+    <link href="<%=Page.ResolveUrl("~/Resources/css/lib/bootstrap.min.css")%>" rel="stylesheet">
     <link href="<%=Page.ResolveUrl("~/Resources/css/style.css")%>" rel="stylesheet">
     <script src="<%=Page.ResolveUrl("~/Resources/js/lib/bootstrap.min.js")%>"></script>
-      <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
- 
-     <style>
- .AlertMessage {
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    top: 60px;
-    left: 20px;
-    animation:fadeInDown 0.8s;
-}
- @keyframes fadeInDown {
-   0% {
-      opacity: 0;
-      transform: translateY(-20px);
-   }
-   100% {
-      opacity: 1;
-      transform: translateY(0);
-   }
-} 
-  
- .main-page{
-     display:block;
-     width: 70%;
-    margin:0 auto;
-    background-color:white;
-    padding:10px;
-}
-  </style>
-    
+    <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
+
+    <style>
+        .AlertMessage {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 60px;
+            left: 20px;
+            animation: fadeInDown 0.8s;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-page {
+            display: block;
+            width: 70%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body class="bg-info">
     <form id="form1" runat="server">
         <nav class="navbar navbar-dark bg-primary">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-          <img src="../../../Resources/image/movierent.png" alt="logo" height="80px" width="80px" class="movielogo"/>
-          
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="navbarlink collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a class="nav-link" runat="server" href="../../Customer/CustomerList.aspx">Customer</a></li>
-       <li><a class="nav-link" runat="server" href="../../Movie/MovieList.aspx">Movie</a></li>
-          <li><a class="nav-link" runat="server" href="../../Salutation/SalutationList.aspx">Salutation</a></li>
-           <li><a class="nav-link" runat="server" href="../../MovieRenting/MovieRentingList.aspx">Movie Renting List</a></li>
-            <li>
-                <asp:LinkButton ID="btnLogout" runat="server" class="nav-link" OnClick="btnLogout_Click">Logout</asp:LinkButton></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  
-       </div>  <!-- /.container-fluid -->
-</nav>
-        <div class="main-page">
-                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="../../../Resources/image/movierent.png" alt="logo" height="80px" width="80px" class="movielogo" />
                 </div>
-    
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="navbarlink collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a class="nav-link" runat="server" href="../../Customer/CustomerList.aspx">Customer</a></li>
+                        <li><a class="nav-link" runat="server" href="../../Movie/MovieList.aspx">Movie</a></li>
+                        <li><a class="nav-link" runat="server" href="../../Salutation/SalutationList.aspx">Salutation</a></li>
+                        <li><a class="nav-link" runat="server" href="../../MovieRenting/MovieRentingList.aspx">Movie Renting List</a></li>
+                        <li>
+                            <asp:LinkButton ID="btnLogout" runat="server" class="nav-link" OnClick="btnLogout_Click">Logout</asp:LinkButton></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="main-page">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
         <footer class="bg-primary">
             <h5 class="text-center">Copyright © <%=DateTime.Now.Year%> Movie Renting Company</h5>
         </footer>
-   
-    <script src="<%=Page.ResolveUrl("~/Resources/js/lib/bootstrap.min.js")%>"></script>
-    
+
+        <script src="<%=Page.ResolveUrl("~/Resources/js/lib/bootstrap.min.js")%>"></script>
     </form>
-  
- <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
-       <script type="text/javascript">
+
+    <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
+    <script type="text/javascript">
            function HideLabel() {
                document.getElementById("AlertMsg").style.display = "none";
            }
            setTimeout("HideLabel();", 3000);
-       </script>
+    </script>
 </body>
 </html>

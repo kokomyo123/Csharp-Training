@@ -41,9 +41,7 @@
             </div>
             <div class="col-md-3">
                 <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="btnAdd_Click" />
-            </div>
-            <div class="col-md-4">
-                <asp:Button ID="btnExcel" runat="server" Text="Import to Excel" CssClass="btn btn-excel" OnClick="btnExcel_Click" />
+                <asp:Button ID="btnImport" runat="server" Text="Import from Excel File" CssClass="btn btn-danger" OnClick="btnImport_Click" />
             </div>
         </div>
         <br />

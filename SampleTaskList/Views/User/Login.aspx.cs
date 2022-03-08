@@ -1,24 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SampleTaskList.Views.User
 {
     public partial class Login : System.Web.UI.Page
     {
-        DataTable da = new DataTable();
-        Services.User.UserService userservice = new Services.User.UserService();
+        #region variable declaration and page load
 
+        private DataTable da = new DataTable();
+        private Services.User.UserService userservice = new Services.User.UserService();
+
+        /// <summary>
+        /// on page load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
+        #endregion variable declaration and page load
+
         #region checkuser
+
         /// <summary>
         /// Login user
         /// </summary>
@@ -40,6 +45,6 @@ namespace SampleTaskList.Views.User
             }
         }
 
-        #endregion
+        #endregion checkuser
     }
 }
