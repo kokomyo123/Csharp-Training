@@ -31,7 +31,7 @@
                 <div class="form-group row">
                     <label for="txtSearch" class="col-sm-4 col-form-label text-info">Salutation Name</label>
                     <div class="col-sm-6">
-                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
                     </div>
                     <div class="col-sm-2">
                         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
@@ -40,13 +40,14 @@
             </div>
             <div class="col-md-3">
                 <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="btnAdd_Click" />
+                <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-warning" OnClick="btnClear_Click" />
             </div>
         </div>
 
         <br />
         <div class="row">
             <div class="col-md-9 col-md-offset-1">
-                <asp:GridView ID="grvSalutation" runat="server" CssClass="table table-striped table-hover pt-5" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="grvSalutation_RowDeleting" OnRowUpdating="grvSalutation_RowUpdating" AllowPaging="True" OnPageIndexChanging="grvSalutation_PageIndexChanging" PageSize="5" ShowHeaderWhenEmpty="true">
+                <asp:GridView ID="grvSalutation" runat="server" CssClass="gvSalutation table table-striped table-hover pt-5" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="grvSalutation_RowDeleting" OnRowUpdating="grvSalutation_RowUpdating" OnPageIndexChanging="grvSalutation_PageIndexChanging" PageSize="5" ShowHeaderWhenEmpty="true">
                     <Columns>
                         <asp:TemplateField ItemStyle-Width="10px">
                             <HeaderTemplate>

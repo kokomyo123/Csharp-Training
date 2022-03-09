@@ -53,7 +53,10 @@ namespace SampleTaskList.Views.Salutation
             else
             {
                 grvSalutation.DataSource = null;
+                grvSalutation.DataBind();
             }
+            grvSalutation.UseAccessibleHeader = true;
+            grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion Get Data
@@ -129,6 +132,8 @@ namespace SampleTaskList.Views.Salutation
                 grvSalutation.DataSource = null;
                 grvSalutation.DataBind();
             }
+            grvSalutation.UseAccessibleHeader = true;
+            grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion search salutation
@@ -147,5 +152,43 @@ namespace SampleTaskList.Views.Salutation
         }
 
         #endregion paging
+
+        #region clear and search data paging update
+
+        /// <summary>
+        /// clear data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            GetData();
+        }
+
+        /// <summary>
+        /// search data paging update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            da = Services.Salutation.SalutationService.GetSearchData(txtSearch.Text);
+            if (da.Rows.Count > 0)
+            {
+                grvSalutation.DataSource = da;
+                grvSalutation.DataBind();
+                grvSalutation.Visible = true;
+            }
+            else
+            {
+                grvSalutation.DataSource = null;
+                grvSalutation.DataBind();
+            }
+            grvSalutation.UseAccessibleHeader = true;
+            grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        #endregion clear and search data paging update
     }
 }

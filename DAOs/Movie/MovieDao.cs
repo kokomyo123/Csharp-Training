@@ -83,7 +83,7 @@ namespace DAOs.Movie
         {
             try
             {
-                return Common.HelperDao.GetData("Select movie from tbl_movie where movie='" + movie + "'", CommandType.Text);
+                return Common.HelperDao.GetData("Select movie from tbl_movie where movie COLLATE Latin1_General_CS_AS='" + movie + "'", CommandType.Text);
             }
             catch (Exception ex)
             {
@@ -121,7 +121,8 @@ namespace DAOs.Movie
                 }
                 else
                 {
-                    return Common.HelperDao.GetData("Select id,movie from tbl_movie where movie ='" + str + "'", CommandType.Text);
+                    //return Common.HelperDao.GetData("Select id,movie from tbl_movie where movie LIKE '" + str + "'", CommandType.Text);
+                    return Common.HelperDao.GetData("Select id,movie from tbl_movie where movie LIKE '%" + str + "%'", CommandType.Text);
                 }
             }
             catch (Exception ex)

@@ -6,12 +6,8 @@ namespace SampleTaskList.Views.MovieRenting
 {
     public partial class MovieRentingCreate : System.Web.UI.Page
     {
-        #region variable declaration
-
         private Models.MovieRenting.MovieRent movierentmodel = new Models.MovieRenting.MovieRent();
         private DataTable da = new DataTable();
-
-        #endregion variable declaration
 
         #region data binding and getting data
 

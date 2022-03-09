@@ -53,7 +53,10 @@ namespace SampleTaskList.Views.Customer
             else
             {
                 grvCustomer.DataSource = null;
+                grvCustomer.DataBind();
             }
+            grvCustomer.UseAccessibleHeader = true;
+            grvCustomer.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion Get Data
@@ -129,6 +132,8 @@ namespace SampleTaskList.Views.Customer
                 grvCustomer.DataSource = null;
                 grvCustomer.DataBind();
             }
+            grvCustomer.UseAccessibleHeader = true;
+            grvCustomer.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion search customer
@@ -147,5 +152,43 @@ namespace SampleTaskList.Views.Customer
         }
 
         #endregion paging
+
+        #region clear and paging update
+
+        /// <summary>
+        /// clear data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            GetData();
+        }
+
+        /// <summary>
+        /// search paging
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            da = Services.Customer.CustomerService.GetSearchData(txtSearch.Text);
+            if (da.Rows.Count > 0)
+            {
+                grvCustomer.DataSource = da;
+                grvCustomer.DataBind();
+                grvCustomer.Visible = true;
+            }
+            else
+            {
+                grvCustomer.DataSource = null;
+                grvCustomer.DataBind();
+            }
+            grvCustomer.UseAccessibleHeader = true;
+            grvCustomer.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        #endregion clear and paging update
     }
 }

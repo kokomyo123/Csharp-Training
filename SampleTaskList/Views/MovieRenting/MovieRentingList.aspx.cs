@@ -54,7 +54,11 @@ namespace SampleTaskList.Views.MovieRenting
             else
             {
                 grvMovieRent.DataSource = null;
+                grvMovieRent.DataBind();
             }
+
+            grvMovieRent.UseAccessibleHeader = true;
+            grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion Get Data
@@ -80,6 +84,8 @@ namespace SampleTaskList.Views.MovieRenting
                 grvMovieRent.DataSource = null;
                 grvMovieRent.DataBind();
             }
+            grvMovieRent.UseAccessibleHeader = true;
+            grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion search movierent
@@ -159,8 +165,17 @@ namespace SampleTaskList.Views.MovieRenting
         protected void btnExport_Click(object sender, EventArgs e)
         {
             da = Services.MovieRenting.MovieRentService.GetSearchData(txtSearch.Text);
-            string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
-            ExportToExcel(da, filename);
+            if (Directory.Exists("~/Download"))
+            {
+                string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
+                ExportToExcel(da, filename);
+            }
+            else
+            {
+                Directory.CreateDirectory(Server.MapPath("~/Download"));
+                string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
+                ExportToExcel(da, filename);
+            }
         }
 
         /// <summary>
@@ -176,7 +191,7 @@ namespace SampleTaskList.Views.MovieRenting
             Strwriter.Write("<BR><BR><BR>");
             Strwriter.Write("<Table border='2' bgColor='#ffffff' borderColor='#000000' cellSpacing='0' cellPadding='0' style='font-size:15.0pt; font-family:TimesNewRoman; background:white;'> <TR>");
             int dtcolumncount = table.Columns.Count;
-            for (int j = 0; j < dtcolumncount; j++)
+            for (int j = 1; j < dtcolumncount; j++)
             {
                 Strwriter.Write("<Td style='background:aquamarine;'>");
                 Strwriter.Write("<B>");
@@ -188,7 +203,7 @@ namespace SampleTaskList.Views.MovieRenting
             foreach (DataRow row in table.Rows)
             {
                 Strwriter.Write("<TR>");
-                for (int i = 0; i < table.Columns.Count; i++)
+                for (int i = 1; i < table.Columns.Count; i++)
                 {
                     Strwriter.Write("<Td>");
                     Strwriter.Write(row[i].ToString());
@@ -201,8 +216,47 @@ namespace SampleTaskList.Views.MovieRenting
             Strwriter.Close();
             Session["alert"] = "successfully exported";
             Session["alert-type"] = "success";
+            GetData();
         }
 
         #endregion export database data to excel
+
+        #region clear and search paging update
+
+        /// <summary>
+        /// clear data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            GetData();
+        }
+
+        /// <summary>
+        /// search data paging update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            da = Services.MovieRenting.MovieRentService.GetSearchData(txtSearch.Text);
+            if (da.Rows.Count > 0)
+            {
+                grvMovieRent.DataSource = da;
+                grvMovieRent.DataBind();
+                grvMovieRent.Visible = true;
+            }
+            else
+            {
+                grvMovieRent.DataSource = null;
+                grvMovieRent.DataBind();
+            }
+            grvMovieRent.UseAccessibleHeader = true;
+            grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        #endregion clear and search paging update
     }
 }

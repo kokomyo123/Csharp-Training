@@ -7,12 +7,3 @@ D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.csproj.CoreCo
 D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.csproj.CopyComplete
 D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.dll
 D:\Webproject\SCMTraining\Day1\csharp_training\DAOs\obj\Debug\DAOs.pdb
-D:\Csharp-Training\Csharp-Training\DAOs\bin\Debug\DAOs.dll
-D:\Csharp-Training\Csharp-Training\DAOs\bin\Debug\DAOs.pdb
-D:\Csharp-Training\Csharp-Training\DAOs\bin\Debug\Models.dll
-D:\Csharp-Training\Csharp-Training\DAOs\bin\Debug\Models.pdb
-D:\Csharp-Training\Csharp-Training\DAOs\obj\Debug\DAOs.csproj.AssemblyReference.cache
-D:\Csharp-Training\Csharp-Training\DAOs\obj\Debug\DAOs.csproj.CoreCompileInputs.cache
-D:\Csharp-Training\Csharp-Training\DAOs\obj\Debug\DAOs.csproj.CopyComplete
-D:\Csharp-Training\Csharp-Training\DAOs\obj\Debug\DAOs.dll
-D:\Csharp-Training\Csharp-Training\DAOs\obj\Debug\DAOs.pdb

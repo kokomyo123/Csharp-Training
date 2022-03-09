@@ -57,7 +57,10 @@ namespace SampleTaskList.Views.Movie
             else
             {
                 grvMovie.DataSource = null;
+                grvMovie.DataBind();
             }
+            grvMovie.UseAccessibleHeader = true;
+            grvMovie.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion Get Data
@@ -83,6 +86,8 @@ namespace SampleTaskList.Views.Movie
                 grvMovie.DataSource = null;
                 grvMovie.DataBind();
             }
+            grvMovie.UseAccessibleHeader = true;
+            grvMovie.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion search movie
@@ -159,6 +164,9 @@ namespace SampleTaskList.Views.Movie
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
+        private int count;
+
         protected void btnImport_Click(object sender, EventArgs e)
         {
             string excelPath = Server.MapPath("~/Upload/MovieList.xlsx");
@@ -195,12 +203,24 @@ namespace SampleTaskList.Views.Movie
                         {
                             insertdataintosql(movie);
                         }
+                        else
+                        {
+                            count = 1;
+                        }
                     }
                     oconn.Close();
-
-                    Session["alert"] = "Data Inserted Sucessfully";
-                    Session["alert-type"] = "success";
-                    GetData();
+                    if (count > 0)
+                    {
+                        Session["alert"] = "Some Data Exist";
+                        Session["alert-type"] = "info";
+                        GetData();
+                    }
+                    else
+                    {
+                        Session["alert"] = "Data Inserted Sucessfully";
+                        Session["alert-type"] = "success";
+                        GetData();
+                    }
                 }
                 catch (DataException ee)
                 {
@@ -235,6 +255,8 @@ namespace SampleTaskList.Views.Movie
             if (i != null)
             {
                 exist = true;
+                Session["alert"] = "File exist";
+                Session["alert-type"] = "danger";
             }
             conn.Close();
             return exist;
@@ -270,5 +292,43 @@ namespace SampleTaskList.Views.Movie
         }
 
         #endregion import excel data to database
+
+        #region clear and search paging update
+
+        /// <summary>
+        /// clear data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            GetData();
+        }
+
+        /// <summary>
+        /// search paging update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            da = Services.Movie.MovieService.GetSearchData(txtSearch.Text);
+            if (da.Rows.Count > 0)
+            {
+                grvMovie.DataSource = da;
+                grvMovie.DataBind();
+                grvMovie.Visible = true;
+            }
+            else
+            {
+                grvMovie.DataSource = null;
+                grvMovie.DataBind();
+            }
+            grvMovie.UseAccessibleHeader = true;
+            grvMovie.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        #endregion clear and search paging update
     }
 }

@@ -82,7 +82,7 @@ namespace DAOs.Salutation
         {
             try
             {
-                return Common.HelperDao.GetData("Select id,salutation from tbl_salutation where salutation='" + salutation + "'", CommandType.Text);
+                return Common.HelperDao.GetData("Select id,salutation from tbl_salutation where salutation COLLATE Latin1_General_CS_AS='" + salutation + "'", CommandType.Text);
             }
             catch (Exception ex)
             {
@@ -120,7 +120,7 @@ namespace DAOs.Salutation
                 }
                 else
                 {
-                    return Common.HelperDao.GetData("Select id,salutation from tbl_salutation where salutation ='" + str + "'", CommandType.Text);
+                    return Common.HelperDao.GetData("Select id,salutation from tbl_salutation where salutation LIKE '%" + str + "%'", CommandType.Text);
                 }
             }
             catch (Exception ex)

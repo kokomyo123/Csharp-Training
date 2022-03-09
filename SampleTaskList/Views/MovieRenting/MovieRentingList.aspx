@@ -32,7 +32,7 @@
                 <div class="form-group row">
                     <label for="txtSearch" class="col-sm-4 col-form-label text-info">Customer Name</label>
                     <div class="col-sm-6">
-                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
                     </div>
                     <div class="col-sm-2">
                         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
@@ -40,15 +40,16 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="btnAdd_Click" />
+                <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-warning" OnClick="btnClear_Click" />
                 <asp:Button ID="btnExport" runat="server" Text="Export to Excel" CssClass="btn btn-danger" OnClick="btnExport_Click" />
             </div>
         </div>
         <br />
         <div class="row">
             <div class="col-md-9 col-md-offset-1">
-                <asp:GridView ID="grvMovieRent" runat="server" CssClass="table table-striped table-hover pt-5" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="grvMovieRent_RowDeleting" OnRowUpdating="grvMovieRent_RowUpdating" AllowPaging="True" OnPageIndexChanging="grvMovieRent_PageIndexChanging" ShowHeaderWhenEmpty="true" PageSize="5">
+                <asp:GridView ID="grvMovieRent" runat="server" CssClass="gvMovierent table table-striped table-hover pt-5" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="grvMovieRent_RowDeleting" OnRowUpdating="grvMovieRent_RowUpdating" OnPageIndexChanging="grvMovieRent_PageIndexChanging" ShowHeaderWhenEmpty="True" PageSize="5">
                     <Columns>
                         <asp:TemplateField>
                             <HeaderTemplate>
@@ -74,9 +75,9 @@
                                 <asp:Label ID="Label3" runat="server" Text="Label">Customer Name</asp:Label>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <%#HttpUtility.HtmlEncode(Eval("full_name"))%>
+                                <%#HttpUtility.HtmlEncode(Eval("Name"))%>
                             </ItemTemplate>
-                            <ItemStyle Width="100px" />
+                            <ItemStyle Width="150px" />
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <HeaderTemplate>

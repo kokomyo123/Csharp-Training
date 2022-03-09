@@ -6,13 +6,9 @@ namespace SampleTaskList.Views.Movie
 {
     public partial class MovieCreate : System.Web.UI.Page
     {
-        #region variable declaration
-
         private Models.Movie.Movie moviemodel = new Models.Movie.Movie();
         private Services.Movie.MovieService movieservice = new Services.Movie.MovieService();
         private DataTable da = new DataTable();
-
-        #endregion variable declaration
 
         #region binding data and getting data
 
@@ -89,6 +85,7 @@ namespace SampleTaskList.Views.Movie
             if (hfMovie.Value == "")
             {
                 da = Services.Movie.MovieService.GetData(txtMovie.Text);
+
                 if (da.Rows.Count > 0)
                 {
                     Session["alert"] = "Data already existed";

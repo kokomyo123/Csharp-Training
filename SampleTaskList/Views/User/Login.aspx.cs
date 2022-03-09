@@ -6,13 +6,13 @@ namespace SampleTaskList.Views.User
 {
     public partial class Login : System.Web.UI.Page
     {
-        #region variable declaration and page load
+        #region variable declaration adn page load
 
         private DataTable da = new DataTable();
         private Services.User.UserService userservice = new Services.User.UserService();
 
         /// <summary>
-        /// on page load
+        /// page load
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -20,7 +20,7 @@ namespace SampleTaskList.Views.User
         {
         }
 
-        #endregion variable declaration and page load
+        #endregion variable declaration adn page load
 
         #region checkuser
 
