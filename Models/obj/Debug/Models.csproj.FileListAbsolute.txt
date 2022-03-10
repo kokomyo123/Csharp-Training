@@ -3,3 +3,9 @@ D:\Webproject\SCMTraining\Day1\csharp_training\Models\bin\Debug\Models.pdb
 D:\Webproject\SCMTraining\Day1\csharp_training\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 D:\Webproject\SCMTraining\Day1\csharp_training\Models\obj\Debug\Models.dll
 D:\Webproject\SCMTraining\Day1\csharp_training\Models\obj\Debug\Models.pdb
+D:\Csharp Project\Csharp-Training\Models\bin\Debug\Models.dll
+D:\Csharp Project\Csharp-Training\Models\bin\Debug\Models.pdb
+D:\Csharp Project\Csharp-Training\Models\obj\Debug\Models.csproj.AssemblyReference.cache
+D:\Csharp Project\Csharp-Training\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+D:\Csharp Project\Csharp-Training\Models\obj\Debug\Models.dll
+D:\Csharp Project\Csharp-Training\Models\obj\Debug\Models.pdb
