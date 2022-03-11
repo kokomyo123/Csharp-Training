@@ -6,13 +6,9 @@ namespace SampleTaskList.Views.Salutation
 {
     public partial class SalutationCreate1 : System.Web.UI.Page
     {
-        #region variable declaration
-
         private Models.Salutation.Salutation salutationmodel = new Models.Salutation.Salutation();
         private Services.Salutation.SalutationService salutationservice = new Services.Salutation.SalutationService();
         private DataTable da = new DataTable();
-
-        #endregion variable declaration
 
         #region load Data
 

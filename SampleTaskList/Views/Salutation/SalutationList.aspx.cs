@@ -12,8 +12,9 @@ namespace SampleTaskList.Views.Salutation
         private Models.Salutation.Salutation salutationmodel = new Models.Salutation.Salutation();
         private Services.Salutation.SalutationService salutationservice = new Services.Salutation.SalutationService();
         private DataTable da = new DataTable();
-
         #endregion variable declaration
+
+
 
         #region bind data
 
@@ -53,7 +54,10 @@ namespace SampleTaskList.Views.Salutation
             else
             {
                 grvSalutation.DataSource = null;
+                grvSalutation.DataBind();
             }
+            grvSalutation.UseAccessibleHeader = true;
+            grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion Get Data
@@ -129,6 +133,8 @@ namespace SampleTaskList.Views.Salutation
                 grvSalutation.DataSource = null;
                 grvSalutation.DataBind();
             }
+            grvSalutation.UseAccessibleHeader = true;
+            grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion search salutation
@@ -147,5 +153,43 @@ namespace SampleTaskList.Views.Salutation
         }
 
         #endregion paging
+
+        #region clear and search text changed
+
+        /// <summary>
+        /// search text box changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            da = Services.Salutation.SalutationService.GetSearchData(txtSearch.Text);
+            if (da.Rows.Count > 0)
+            {
+                grvSalutation.DataSource = da;
+                grvSalutation.DataBind();
+                grvSalutation.Visible = true;
+            }
+            else
+            {
+                grvSalutation.DataSource = null;
+                grvSalutation.DataBind();
+            }
+            grvSalutation.UseAccessibleHeader = true;
+            grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        /// <summary>
+        /// clear text box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            this.GetData();
+        }
+
+        #endregion clear and search text changed
     }
 }

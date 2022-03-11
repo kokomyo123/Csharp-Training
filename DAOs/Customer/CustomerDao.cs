@@ -124,7 +124,7 @@ namespace DAOs.Customer
                 }
                 else
                 {
-                    return Common.HelperDao.GetData("Select tbl_customer.id,tbl_customer.salutation_id,tbl_customer.full_name,tbl_customer.address,tbl_salutation.id,tbl_salutation.salutation  from tbl_customer  join tbl_salutation  on tbl_customer.salutation_id=tbl_salutation.id where full_name ='" + str + "'", CommandType.Text);
+                    return Common.HelperDao.GetData("Select tbl_customer.id,tbl_customer.salutation_id,tbl_customer.full_name,tbl_customer.address,tbl_salutation.id,tbl_salutation.salutation  from tbl_customer  join tbl_salutation  on tbl_customer.salutation_id=tbl_salutation.id where full_name LIKE '%" + str + "%'", CommandType.Text);
                 }
             }
             catch (Exception ex)

@@ -12,7 +12,7 @@ namespace SampleTaskList.Views.User
         private Services.User.UserService userservice = new Services.User.UserService();
 
         /// <summary>
-        /// on page load
+        /// page load event
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -7,8 +7,7 @@
         <div class="row">
             <asp:HiddenField ID="hfCustomer" runat="server" />
             <h1>
-                <asp:Label ID="lblCustomer" runat="server" Text="Label"></asp:Label>
-            </h1>
+                <asp:Label ID="lblCustomer" runat="server" Text="Label"></asp:Label></h1>
             <asp:Label ID="LblMessage" runat="server" Text="Label" Visible="False"></asp:Label>
             <div class="col-md-6">
                 <div class="form-group">

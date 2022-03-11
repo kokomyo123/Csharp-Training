@@ -109,6 +109,9 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="datatables\css\jquery.dataTables.min.css" />
+    <Content Include="datatables\js\jquery.dataTables.min.js" />
+    <Content Include="QueryFile\Assignment4.sql" />
     <Content Include="Resources\css\lib\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />

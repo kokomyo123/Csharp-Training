@@ -100,7 +100,8 @@ namespace DAOs.MovieRenting
         {
             try
             {
-                return Common.HelperDao.GetData("Select tbl_movierenting.id,tbl_salutation.salutation,tbl_customer.full_name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id", CommandType.Text);
+                //return Common.HelperDao.GetData("Select tbl_movierenting.id,tbl_salutation.salutation,tbl_customer.full_name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id", CommandType.Text);
+                return Common.HelperDao.GetData("Select * from GetMovieRentingData", CommandType.Text);
             }
             catch (Exception ex)
             {
@@ -118,11 +119,13 @@ namespace DAOs.MovieRenting
             {
                 if (str == "")
                 {
-                    return Common.HelperDao.GetData("Select tbl_movierenting.id,tbl_salutation.salutation,tbl_customer.full_name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id", CommandType.Text);
+                    //return Common.HelperDao.GetData("Select tbl_movierenting.id,ROW_NUMBER() OVER (ORDER BY tbl_movierenting.id) No,tbl_salutation.salutation,tbl_customer.full_name AS Name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id", CommandType.Text);
+                    return Common.HelperDao.GetData("Select * from GetMovieRentingData", CommandType.Text);
                 }
                 else
                 {
-                    return Common.HelperDao.GetData("Select tbl_movierenting.id,tbl_salutation.salutation,tbl_customer.full_name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id AND tbl_customer.full_name ='" + str + "' ", CommandType.Text);
+                    //    return Common.HelperDao.GetData("Select tbl_movierenting.id,tbl_salutation.salutation,tbl_customer.full_name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id AND tbl_customer.full_name ='" + str + "' ", CommandType.Text);
+                    return Common.HelperDao.GetData("Select * from GetMovieRentingData Where Name LIKE'%" + str + "%' ", CommandType.Text);
                 }
             }
             catch (Exception ex)

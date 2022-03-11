@@ -4,7 +4,7 @@ namespace Models.Salutation
 {
     public class Salutation
     {
-        #region Local and Constant variable Declaration
+        #region Local variable and Constant Declaration
 
         /// <summary>
         /// Salutation Variables
@@ -13,7 +13,7 @@ namespace Models.Salutation
 
         private string _salutation;
 
-        #endregion Local and Constant variable Declaration
+        #endregion Local variable and Constant Declaration
 
         #region Constructor and Destructor
 

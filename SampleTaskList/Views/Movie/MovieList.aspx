@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h1 class="text-center text-warning">Movie List</h1>
@@ -32,22 +33,23 @@
                 <div class="form-group row">
                     <label for="txtSearch" class="col-sm-4 col-form-label text-info">Movie Name</label>
                     <div class="col-sm-6">
-                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
                     </div>
                     <div class="col-sm-2">
                         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <asp:Button ID="btnAdd" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="btnAdd_Click" />
+                <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-warning" OnClick="btnClear_Click" />
                 <asp:Button ID="btnImport" runat="server" Text="Import from Excel File" CssClass="btn btn-danger" OnClick="btnImport_Click" />
             </div>
         </div>
         <br />
         <div class="row">
             <div class="col-md-9 col-md-offset-1">
-                <asp:GridView ID="grvMovie" runat="server" CssClass="table table-striped table-hover pt-5" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="grvMovie_RowDeleting" OnRowUpdating="grvMovie_RowUpdating" AllowPaging="True" PageSize="5" OnPageIndexChanging="grvMovie_PageIndexChanging" ShowHeaderWhenEmpty="true">
+                <asp:GridView ID="grvMovie" runat="server" CssClass="gvMovie table table-striped table-hover pt-5" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="grvMovie_RowDeleting" OnRowUpdating="grvMovie_RowUpdating" AllowPaging="False" PageSize="5" OnPageIndexChanging="grvMovie_PageIndexChanging" ShowHeaderWhenEmpty="true">
                     <Columns>
                         <asp:TemplateField ItemStyle-Width="5%">
                             <HeaderTemplate>
@@ -91,9 +93,22 @@
                     </Columns>
                     <EmptyDataTemplate>No Record Available</EmptyDataTemplate>
                     <HeaderStyle BackColor="#6699FF" ForeColor="Black" />
-                    <PagerStyle Font-Bold="True" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle" Wrap="True" CssClass="pagination-ys" BackColor="White" BorderColor="White" />
+                    <%--  <PagerStyle   Font-Bold="True" Font-Size="Large" HorizontalAlign="Center" VerticalAlign="Middle" Wrap="True" CssClass="pagination-ys" BackColor="White" BorderColor="White" />--%>
                 </asp:GridView>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $("[id=grvMovie]").DataTable(
+                {
+                    bLengthChange: true,
+                    lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+                    bFilter: true,
+                    bSort: true,
+                    bPaginate: true
+                });
+        });
+    </script>
 </asp:Content>

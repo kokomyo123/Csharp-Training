@@ -6,12 +6,8 @@ namespace SampleTaskList.Views.Customer
 {
     public partial class CustomerCreate : System.Web.UI.Page
     {
-        #region variable declaration
-
         private Models.Customer.Customer customermodel = new Models.Customer.Customer();
         private DataTable da = new DataTable();
-
-        #endregion variable declaration
 
         #region binding data and getting data
 

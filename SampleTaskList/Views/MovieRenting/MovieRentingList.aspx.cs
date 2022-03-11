@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.IO;
+using System.Net.Mail;
+using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -54,7 +56,11 @@ namespace SampleTaskList.Views.MovieRenting
             else
             {
                 grvMovieRent.DataSource = null;
+                grvMovieRent.DataBind();
             }
+
+            grvMovieRent.UseAccessibleHeader = true;
+            grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion Get Data
@@ -80,6 +86,8 @@ namespace SampleTaskList.Views.MovieRenting
                 grvMovieRent.DataSource = null;
                 grvMovieRent.DataBind();
             }
+            grvMovieRent.UseAccessibleHeader = true;
+            grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         #endregion search movierent
@@ -159,8 +167,17 @@ namespace SampleTaskList.Views.MovieRenting
         protected void btnExport_Click(object sender, EventArgs e)
         {
             da = Services.MovieRenting.MovieRentService.GetSearchData(txtSearch.Text);
-            string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
-            ExportToExcel(da, filename);
+            if (Directory.Exists("~/Download"))
+            {
+                string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
+                ExportToExcel(da, filename);
+            }
+            else
+            {
+                Directory.CreateDirectory(Server.MapPath("~/Download"));
+                string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
+                ExportToExcel(da, filename);
+            }
         }
 
         /// <summary>
@@ -176,7 +193,7 @@ namespace SampleTaskList.Views.MovieRenting
             Strwriter.Write("<BR><BR><BR>");
             Strwriter.Write("<Table border='2' bgColor='#ffffff' borderColor='#000000' cellSpacing='0' cellPadding='0' style='font-size:15.0pt; font-family:TimesNewRoman; background:white;'> <TR>");
             int dtcolumncount = table.Columns.Count;
-            for (int j = 0; j < dtcolumncount; j++)
+            for (int j = 1; j < dtcolumncount; j++)
             {
                 Strwriter.Write("<Td style='background:aquamarine;'>");
                 Strwriter.Write("<B>");
@@ -188,7 +205,7 @@ namespace SampleTaskList.Views.MovieRenting
             foreach (DataRow row in table.Rows)
             {
                 Strwriter.Write("<TR>");
-                for (int i = 0; i < table.Columns.Count; i++)
+                for (int i = 1; i < table.Columns.Count; i++)
                 {
                     Strwriter.Write("<Td>");
                     Strwriter.Write(row[i].ToString());
@@ -201,8 +218,120 @@ namespace SampleTaskList.Views.MovieRenting
             Strwriter.Close();
             Session["alert"] = "successfully exported";
             Session["alert-type"] = "success";
+            GetData();
         }
 
         #endregion export database data to excel
+
+        #region clear and search text changed
+
+        /// <summary>
+        /// clear text box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            this.GetData();
+        }
+
+        /// <summary>
+        /// search text box changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            da = Services.MovieRenting.MovieRentService.GetSearchData(txtSearch.Text);
+            if (da.Rows.Count > 0)
+            {
+                grvMovieRent.DataSource = da;
+                grvMovieRent.DataBind();
+                grvMovieRent.Visible = true;
+            }
+            else
+            {
+                grvMovieRent.DataSource = null;
+                grvMovieRent.DataBind();
+            }
+            grvMovieRent.UseAccessibleHeader = true;
+            grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        #endregion clear and search text changed
+
+        #region sendEmail
+
+        /// <summary>
+        /// Sending Email
+        /// </summary>
+        /// <param name="file"></param>
+        private void sendEmail(string file)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("yehtetaung791998@gmail.com");
+                string ccaddress = "yehtetaung791998@gmail.com,donotbelievepeople@gmail.com";
+                for (int i = 0; i < ccaddress.Split(',').Length; i++)
+                {
+                    message.CC.Add(new MailAddress(ccaddress.Split(',')[i]));
+                }
+                message.To.Add(new MailAddress("yehtetaung791998@gmail.com"));
+                string mailbody = "<center><h1>Movie Renting</h1></center>";
+                mailbody += "<p><h3>Hi Guy,</h3></p>";
+                mailbody += "<p>Thank you for renting our movies.Here is your rented movie list.</p>";
+                mailbody += "<p>Please tell us if you are inconvenient.</p>";
+                mailbody += "<p>We look forward to hearing from you</p>";
+                mailbody += "<p>Best regards,<p>";
+                mailbody += "<p><h4>Movie Renting company🎬</h4></p>";
+                message.Subject = "Movie Renting List";
+                message.Body = mailbody;
+                message.BodyEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+                message.Attachments.Add(new Attachment(file));
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp
+                System.Net.NetworkCredential basicCredential1 = new
+                System.Net.NetworkCredential("yehtetaung791998@gmail.com", "yourpassword");
+                client.EnableSsl = true;
+                client.UseDefaultCredentials = false;
+                client.Credentials = basicCredential1;
+                client.Send(message);
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// send mail event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnSendMail_Click(object sender, EventArgs e)
+        {
+            da = Services.MovieRenting.MovieRentService.GetSearchData(txtSearch.Text);
+            if (Directory.Exists("~/Download"))
+            {
+                string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
+                ExportToExcel(da, filename);
+                sendEmail(filename);
+                Session["alert"] = "Sending email successful";
+                Session["alert-type"] = "success";
+            }
+            else
+            {
+                Directory.CreateDirectory(Server.MapPath("~/Download"));
+                string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
+                ExportToExcel(da, filename);
+                sendEmail(filename);
+                Session["alert"] = "Sending email successful";
+                Session["alert-type"] = "success";
+            }
+        }
+
+        #endregion sendEmail
     }
 }

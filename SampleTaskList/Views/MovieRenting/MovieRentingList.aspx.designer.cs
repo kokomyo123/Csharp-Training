@@ -51,6 +51,15 @@ namespace SampleTaskList.Views.MovieRenting
         protected global::System.Web.UI.WebControls.Button btnAdd;
 
         /// <summary>
+        /// btnClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClear;
+
+        /// <summary>
         /// btnExport control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace SampleTaskList.Views.MovieRenting
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExport;
+
+        /// <summary>
+        /// btnSendMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSendMail;
 
         /// <summary>
         /// grvMovieRent control.
