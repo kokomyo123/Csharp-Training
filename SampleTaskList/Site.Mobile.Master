@@ -17,7 +17,11 @@
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
             </section>
+<<<<<<< HEAD
             <friendlyurls:viewswitcher runat="server" />
+=======
+            <friendlyUrls:ViewSwitcher runat="server" />
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
         </div>
     </form>
 </body>

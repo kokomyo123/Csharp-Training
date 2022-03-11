@@ -100,14 +100,21 @@
         $(function () {
             $(".gvSalutation,.gvCustomer,.gvMovie,.gvMovierent").DataTable(
                 {
+<<<<<<< HEAD
                     "dom": '<"top"i>rt<"bottom"flp><"clear">',
+=======
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
                     searching: false,
                     bLengthChange: true,
                     lengthMenu: [[5, 10, -1], [5, 10, "All"]],
                     bFilter: true,
                     bSort: true,
+<<<<<<< HEAD
                     bPaginate: true,
                     bInfo: false
+=======
+                    bPaginate: true
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
                 });
         });
     </script>

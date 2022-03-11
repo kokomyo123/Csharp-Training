@@ -154,10 +154,28 @@ namespace SampleTaskList.Views.Salutation
 
         #endregion paging
 
+<<<<<<< HEAD
         #region clear and search text changed
 
         /// <summary>
         /// search text box changed
+=======
+        #region clear and search data paging update
+
+        /// <summary>
+        /// clear data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            GetData();
+        }
+
+        /// <summary>
+        /// search data paging update
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -179,6 +197,7 @@ namespace SampleTaskList.Views.Salutation
             grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// clear text box
         /// </summary>
@@ -191,5 +210,8 @@ namespace SampleTaskList.Views.Salutation
         }
 
         #endregion clear and search text changed
+=======
+        #endregion clear and search data paging update
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
     }
 }

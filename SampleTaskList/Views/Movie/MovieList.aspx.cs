@@ -293,21 +293,36 @@ namespace SampleTaskList.Views.Movie
 
         #endregion import excel data to database
 
+<<<<<<< HEAD
         #region clear and search text changed
 
         /// <summary>
         /// clear text box
+=======
+        #region clear and search paging update
+
+        /// <summary>
+        /// clear data
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnClear_Click(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
+<<<<<<< HEAD
             this.GetData();
         }
 
         /// <summary>
         /// search text box changed
+=======
+            GetData();
+        }
+
+        /// <summary>
+        /// search paging update
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -329,6 +344,10 @@ namespace SampleTaskList.Views.Movie
             grvMovie.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
+<<<<<<< HEAD
         #endregion clear and search text changed
+=======
+        #endregion clear and search paging update
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
     }
 }

@@ -32,7 +32,11 @@
                 <div class="form-group row">
                     <label for="txtSearch" class="col-sm-4 col-form-label text-info">Customer Name</label>
                     <div class="col-sm-6">
+<<<<<<< HEAD
                         <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
+=======
+                        <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" AutoPostBack="True" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
+>>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
                     </div>
                     <div class="col-sm-2">
                         <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
