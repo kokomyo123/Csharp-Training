@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Customer
 {
     public class Customer
     {
         #region Local variable and Constant Declaration
+
         /// <summary>
         /// Customer Variables
-        /// </summary>		
+        /// </summary>
         private int _id;
+
         private int _salutationId;
         private string _fullname;
         private string _address;
-        #endregion
+
+        #endregion Local variable and Constant Declaration
 
         #region Constructor and Destructor
+
         /// <summary>
-        ///Constructor and Destructor for Customer Variables 
+        ///Constructor and Destructor for Customer Variables
         /// </summary>
         public void PostData()
         {
@@ -28,18 +28,20 @@ namespace Models.Customer
             _salutationId = 0;
             _fullname = String.Empty;
             _address = String.Empty;
-         }
+        }
 
-        public void PostData(int id,int salutationId,string fullname,string address)
+        public void PostData(int id, int salutationId, string fullname, string address)
         {
             _id = id;
             _salutationId = salutationId;
             _fullname = fullname;
             _address = address;
         }
-        #endregion
+
+        #endregion Constructor and Destructor
 
         #region Properties Assigning and Retrieving
+
         /// <summary>
         /// Gets or sets the <b>_ID</b> attribute value.
         /// </summary>
@@ -105,6 +107,6 @@ namespace Models.Customer
             }
         }
 
-        #endregion
+        #endregion Properties Assigning and Retrieving
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,11 +7,16 @@ namespace SampleTaskList.Views.Customer
 {
     public partial class CustomerList : System.Web.UI.Page
     {
-        Models.Customer.Customer customermodel = new Models.Customer.Customer();
-        Services.Customer.CustomerService customerservice = new Services.Customer.CustomerService();
-        DataTable da = new DataTable();
+        #region variable declaration
+
+        private Models.Customer.Customer customermodel = new Models.Customer.Customer();
+        private Services.Customer.CustomerService customerservice = new Services.Customer.CustomerService();
+        private DataTable da = new DataTable();
+
+        #endregion variable declaration
 
         #region binding data
+
         /// <summary>
         /// binding data
         /// </summary>
@@ -31,11 +33,11 @@ namespace SampleTaskList.Views.Customer
                 GetData();
             }
         }
-        #endregion
 
-       
+        #endregion binding data
 
         #region Get Data
+
         /// <summary>
         /// Get Data
         /// </summary>
@@ -54,12 +56,13 @@ namespace SampleTaskList.Views.Customer
                 grvCustomer.DataBind();
             }
             grvCustomer.UseAccessibleHeader = true;
-          grvCustomer.HeaderRow.TableSection = TableRowSection.TableHeader;
+            grvCustomer.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-        #endregion
+        #endregion Get Data
 
         #region customer add,update,delete
+
         /// <summary>
         /// go to add page
         /// </summary>
@@ -119,9 +122,10 @@ namespace SampleTaskList.Views.Customer
             }
         }
 
-        #endregion
+        #endregion customer add,update,delete
 
         #region search customer
+
         /// <summary>
         /// search customer
         /// </summary>
@@ -145,9 +149,10 @@ namespace SampleTaskList.Views.Customer
             grvCustomer.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-        #endregion
+        #endregion search customer
 
         #region paging
+
         /// <summary>
         /// paging
         /// </summary>
@@ -158,14 +163,27 @@ namespace SampleTaskList.Views.Customer
             grvCustomer.PageIndex = e.NewPageIndex;
             this.GetData();
         }
-        #endregion
 
+        #endregion paging
+
+        #region clear text data and search
+
+        /// <summary>
+        /// clear text data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnClear_Click(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
             this.GetData();
         }
 
+        /// <summary>
+        /// search text changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void txtSearch_TextChanged(object sender, EventArgs e)
         {
             da = Services.Customer.CustomerService.GetSearchData(txtSearch.Text);
@@ -183,5 +201,7 @@ namespace SampleTaskList.Views.Customer
             grvCustomer.UseAccessibleHeader = true;
             grvCustomer.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
+
+        #endregion clear text data and search
     }
 }

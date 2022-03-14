@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAOs.Movie
 {
     public class MovieDao
     {
         #region Insert/Update/Delete
+
         /// <summary>
         /// Insert Data
         /// </summary>
@@ -73,10 +70,11 @@ namespace DAOs.Movie
                 throw ex;
             }
         }
-        #endregion
 
+        #endregion Insert/Update/Delete
 
         #region Get Data
+
         /// <summary>
         /// Get Data
         /// </summary>
@@ -149,6 +147,6 @@ namespace DAOs.Movie
             }
         }
 
-        #endregion
+        #endregion Get Data
     }
 }

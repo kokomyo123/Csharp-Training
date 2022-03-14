@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models.MovieRenting
+﻿namespace Models.MovieRenting
 {
     public class MovieRent
     {
         #region Local variable and Constant Declaration
+
         /// <summary>
         /// Movie Renting Variables
-        /// </summary>		
+        /// </summary>
         private int _id;
+
         private int _movieId;
         private int _customerId;
-        #endregion
+
+        #endregion Local variable and Constant Declaration
 
         #region Constructor and Destructor
+
         /// <summary>
-        ///Constructor and Destructor for MovieRenting Variables 
+        ///Constructor and Destructor for MovieRenting Variables
         /// </summary>
         public void PostData()
         {
@@ -28,15 +26,17 @@ namespace Models.MovieRenting
             _customerId = 0;
         }
 
-        public void PostData(int id, int movieId,int customerId)
+        public void PostData(int id, int movieId, int customerId)
         {
             _id = id;
-            _movieId=movieId;
+            _movieId = movieId;
             _customerId = customerId;
         }
-        #endregion
+
+        #endregion Constructor and Destructor
 
         #region Properties Assigning and Retrieving
+
         /// <summary>
         /// Gets or sets the <b>_ID</b> attribute value.
         /// </summary>
@@ -86,6 +86,6 @@ namespace Models.MovieRenting
             }
         }
 
-        #endregion
+        #endregion Properties Assigning and Retrieving
     }
 }

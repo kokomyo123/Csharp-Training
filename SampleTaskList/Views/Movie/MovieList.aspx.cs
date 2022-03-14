@@ -1,24 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OleDb;
-using System.Configuration;
-using System.IO;
-using System.Data.SqlClient;
 
 namespace SampleTaskList.Views.Movie
 {
     public partial class MovieList : System.Web.UI.Page
     {
-        Models.Movie.Movie moviemodel = new Models.Movie.Movie();
-        Services.Movie.MovieService movieservice = new Services.Movie.MovieService();
-        DataTable da = new DataTable();
+        #region variable declaration
+
+        private Models.Movie.Movie moviemodel = new Models.Movie.Movie();
+        private Services.Movie.MovieService movieservice = new Services.Movie.MovieService();
+        private DataTable da = new DataTable();
+
+        #endregion variable declaration
 
         #region data bind
+
         /// <summary>
         /// data bind
         /// </summary>
@@ -34,11 +36,12 @@ namespace SampleTaskList.Views.Movie
             {
                 GetData();
             }
-           
         }
-        #endregion
+
+        #endregion data bind
 
         #region Get Data
+
         /// <summary>
         /// Get Data
         /// </summary>
@@ -60,10 +63,10 @@ namespace SampleTaskList.Views.Movie
             grvMovie.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-        #endregion
-
+        #endregion Get Data
 
         #region search movie
+
         /// <summary>
         /// search movie
         /// </summary>
@@ -71,7 +74,7 @@ namespace SampleTaskList.Views.Movie
         /// <param name="e"></param>
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-             da = Services.Movie.MovieService.GetSearchData(txtSearch.Text);
+            da = Services.Movie.MovieService.GetSearchData(txtSearch.Text);
             if (da.Rows.Count > 0)
             {
                 grvMovie.DataSource = da;
@@ -86,9 +89,11 @@ namespace SampleTaskList.Views.Movie
             grvMovie.UseAccessibleHeader = true;
             grvMovie.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
-        #endregion
+
+        #endregion search movie
 
         #region movie add,update,delete
+
         /// <summary>
         /// go to add page
         /// </summary>
@@ -147,9 +152,11 @@ namespace SampleTaskList.Views.Movie
             int id = Convert.ToInt32(grvMovie.DataKeys[e.RowIndex].Value);
             Response.Redirect("MovieCreate.aspx?id=" + id);
         }
-        #endregion
+
+        #endregion movie add,update,delete
 
         #region paging
+
         /// <summary>
         /// paging
         /// </summary>
@@ -160,16 +167,19 @@ namespace SampleTaskList.Views.Movie
             grvMovie.PageIndex = e.NewPageIndex;
             this.GetData();
         }
-        #endregion
+
+        #endregion paging
 
         #region import excel data to database
+
         /// <summary>
         /// importing data
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        int count;
+        private int count;
+
         protected void btnImport_Click(object sender, EventArgs e)
         {
             string excelPath = Server.MapPath("~/Upload/MovieList.xlsx");
@@ -182,6 +192,7 @@ namespace SampleTaskList.Views.Movie
                     case ".xls": //Excel 97-03
                         conString = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
                         break;
+
                     case ".xlsx": //Excel 07 or higher
                         conString = ConfigurationManager.ConnectionStrings["Excel07+ConString"].ConnectionString;
                         break;
@@ -207,7 +218,7 @@ namespace SampleTaskList.Views.Movie
                         }
                         else
                         {
-                          count = 1;
+                            count = 1;
                         }
                     }
                     oconn.Close();
@@ -223,11 +234,9 @@ namespace SampleTaskList.Views.Movie
                         Session["alert-type"] = "success";
                         GetData();
                     }
-                  
                 }
                 catch (DataException ee)
                 {
-
                 }
             }
             else
@@ -272,7 +281,7 @@ namespace SampleTaskList.Views.Movie
             if (val != DBNull.Value)
                 return val.ToString();
             else
-            return Convert.ToString(0);
+                return Convert.ToString(0);
         }
 
         /// <summary>
@@ -287,7 +296,7 @@ namespace SampleTaskList.Views.Movie
             cmd.Connection = conn;
             string query1 = "INSERT INTO tbl_movie (movie) VALUES (@movie);SELECT SCOPE_IDENTITY()";
             cmd.CommandText = query1;
-            cmd.Parameters.Add("@movie", SqlDbType.NVarChar, 100).Value =movie;
+            cmd.Parameters.Add("@movie", SqlDbType.NVarChar, 100).Value = movie;
             cmd.CommandType = CommandType.Text;
             conn.Open();
             cmd.ExecuteNonQuery();
@@ -295,14 +304,26 @@ namespace SampleTaskList.Views.Movie
             grvMovie.DataBind();
         }
 
-        #endregion
+        #endregion import excel data to database
 
+        #region clear text data and search
+
+        /// <summary>
+        /// clear text data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnClear_Click(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
             this.GetData();
         }
 
+        /// <summary>
+        /// search text changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void txtSearch_TextChanged(object sender, EventArgs e)
         {
             da = Services.Movie.MovieService.GetSearchData(txtSearch.Text);
@@ -321,6 +342,6 @@ namespace SampleTaskList.Views.Movie
             grvMovie.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-     
+        #endregion clear text data and search
     }
 }

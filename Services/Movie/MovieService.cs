@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Movie
 {
     public class MovieService
     {
         #region Insert/Update/Delete
+
         /// <summary>
         /// Insert Data
         /// </summary>
@@ -56,10 +53,11 @@ namespace Services.Movie
                 throw ex;
             }
         }
-        #endregion
 
+        #endregion Insert/Update/Delete
 
-        #region Get Data      
+        #region Get Data
+
         /// <summary>
         /// Get Data
         /// </summary>
@@ -119,6 +117,7 @@ namespace Services.Movie
                 throw ex;
             }
         }
-        #endregion
+
+        #endregion Get Data
     }
 }
