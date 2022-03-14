@@ -1,26 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Models.User
 {
     public class User
     {
         #region Local variable and Constant Declaration
-
         /// <summary>
         /// User Variables
-        /// </summary>
+        /// </summary>		
         private int _id;
-
         private string _name;
         private string _email;
         private string _password;
-
-        #endregion Local variable and Constant Declaration
+        #endregion
 
         #region Constructor and Destructor
-
         /// <summary>
-        ///Constructor and Destructor for User Variables
+        ///Constructor and Destructor for User Variables 
         /// </summary>
         public void UserData()
         {
@@ -30,18 +30,16 @@ namespace Models.User
             _password = string.Empty;
         }
 
-        public void UserData(int id, string name, string email, string password)
+        public void UserData(int id, string name,string email,string password)
         {
             _id = id;
-            _name = name;
+            _name= name;
             _email = email;
             _password = password;
         }
-
-        #endregion Constructor and Destructor
+        #endregion
 
         #region Properties Assigning and Retrieving
-
         /// <summary>
         /// Gets or sets the <b>_ID</b> attribute value.
         /// </summary>
@@ -74,7 +72,6 @@ namespace Models.User
                 _name = value;
             }
         }
-
         /// <summary>
         /// Gets or sets the <b>Email</b> attribute value.
         /// </summary>
@@ -107,6 +104,6 @@ namespace Models.User
             }
         }
 
-        #endregion Properties Assigning and Retrieving
+        #endregion
     }
 }

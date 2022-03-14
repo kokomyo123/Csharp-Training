@@ -9,17 +9,3 @@ D:\Webproject\SCMTraining\Day1\csharp_training\Services\obj\Debug\Services.cspro
 D:\Webproject\SCMTraining\Day1\csharp_training\Services\obj\Debug\Services.csproj.CopyComplete
 D:\Webproject\SCMTraining\Day1\csharp_training\Services\obj\Debug\Services.dll
 D:\Webproject\SCMTraining\Day1\csharp_training\Services\obj\Debug\Services.pdb
-<<<<<<< HEAD
-=======
-D:\Csharp Project\Csharp-Training\Services\bin\Debug\Services.dll
-D:\Csharp Project\Csharp-Training\Services\bin\Debug\Services.pdb
-D:\Csharp Project\Csharp-Training\Services\bin\Debug\DAOs.dll
-D:\Csharp Project\Csharp-Training\Services\bin\Debug\Models.dll
-D:\Csharp Project\Csharp-Training\Services\bin\Debug\DAOs.pdb
-D:\Csharp Project\Csharp-Training\Services\bin\Debug\Models.pdb
-D:\Csharp Project\Csharp-Training\Services\obj\Debug\Services.csproj.AssemblyReference.cache
-D:\Csharp Project\Csharp-Training\Services\obj\Debug\Services.csproj.CoreCompileInputs.cache
-D:\Csharp Project\Csharp-Training\Services\obj\Debug\Services.csproj.CopyComplete
-D:\Csharp Project\Csharp-Training\Services\obj\Debug\Services.dll
-D:\Csharp Project\Csharp-Training\Services\obj\Debug\Services.pdb
->>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58

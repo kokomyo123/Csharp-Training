@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Models;
 namespace Services.Customer
 {
     public class CustomerService
     {
+       
         #region Insert/Update/Delete
-
         /// <summary>
         /// Insert Data
         /// </summary>
@@ -53,19 +57,18 @@ namespace Services.Customer
                 throw ex;
             }
         }
+        #endregion
 
-        #endregion Insert/Update/Delete
 
-        #region Get Data
-
+        #region Get Data      
         /// <summary>
         /// Get Data
         /// </summary>
-        public static DataTable GetData(string name, string address)
+        public static DataTable GetData(string name,string address)
         {
             try
             {
-                return DAOs.Customer.CustomerDao.GetData(name, address);
+                return DAOs.Customer.CustomerDao.GetData(name,address);
             }
             catch (Exception ex)
             {
@@ -117,7 +120,6 @@ namespace Services.Customer
                 throw ex;
             }
         }
-
-        #endregion Get Data
+        #endregion
     }
 }

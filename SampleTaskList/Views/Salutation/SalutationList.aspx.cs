@@ -1,23 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using DAOs;
 namespace SampleTaskList.Views.Salutation
 {
     public partial class SalutationCreate : System.Web.UI.Page
     {
-        #region variable declaration
 
-        private Models.Salutation.Salutation salutationmodel = new Models.Salutation.Salutation();
-        private Services.Salutation.SalutationService salutationservice = new Services.Salutation.SalutationService();
-        private DataTable da = new DataTable();
-        #endregion variable declaration
-
-
+        Models.Salutation.Salutation salutationmodel = new Models.Salutation.Salutation();
+        Services.Salutation.SalutationService salutationservice = new Services.Salutation.SalutationService();
+      
+        DataTable da = new DataTable();
 
         #region bind data
-
         /// <summary>
         /// bind data
         /// </summary>
@@ -34,17 +33,15 @@ namespace SampleTaskList.Views.Salutation
                 GetData();
             }
         }
-
-        #endregion bind data
+        #endregion
 
         #region Get Data
-
         /// <summary>
         /// Get Data
         /// </summary>
         public void GetData()
         {
-            da = Services.Salutation.SalutationService.GetAllData();
+          da = Services.Salutation.SalutationService.GetAllData();
             if (da.Rows.Count > 0)
             {
                 grvSalutation.DataSource = da;
@@ -60,10 +57,10 @@ namespace SampleTaskList.Views.Salutation
             grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-        #endregion Get Data
+        #endregion
+
 
         #region Salutation Add,Update,Delete
-
         /// <summary>
         /// Add Salutation
         /// </summary>
@@ -94,7 +91,20 @@ namespace SampleTaskList.Views.Salutation
         /// <param name="e"></param>
         protected void grvSalutation_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            int sid;
             int id = Convert.ToInt32(grvSalutation.DataKeys[e.RowIndex].Value);
+            da = Services.Customer.CustomerService.GetAllData();
+            for(int j = 0; j < da.Rows.Count; j++)
+            {
+                sid = Convert.ToInt32(da.Rows[j]["salutation_id"]);
+                if (sid == id)
+                {
+                    Session["alert"] = "Data Exist You can't delet this";
+                    Session["alert-type"] = "warning";
+                    GetData();
+                    return;
+                }
+            }
             salutationmodel.ID = id;
             bool IsDelete = Services.Salutation.SalutationService.Delete(salutationmodel);
             if (IsDelete)
@@ -110,10 +120,10 @@ namespace SampleTaskList.Views.Salutation
             }
         }
 
-        #endregion Salutation Add,Update,Delete
+        #endregion
+
 
         #region search salutation
-
         /// <summary>
         /// Search salutation
         /// </summary>
@@ -137,10 +147,9 @@ namespace SampleTaskList.Views.Salutation
             grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-        #endregion search salutation
+        #endregion
 
         #region paging
-
         /// <summary>
         /// Paging
         /// </summary>
@@ -148,37 +157,11 @@ namespace SampleTaskList.Views.Salutation
         /// <param name="e"></param>
         protected void grvSalutation_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grvSalutation.PageIndex = e.NewPageIndex;
+           grvSalutation.PageIndex = e.NewPageIndex;
             this.GetData();
         }
+        #endregion
 
-        #endregion paging
-
-<<<<<<< HEAD
-        #region clear and search text changed
-
-        /// <summary>
-        /// search text box changed
-=======
-        #region clear and search data paging update
-
-        /// <summary>
-        /// clear data
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btnClear_Click(object sender, EventArgs e)
-        {
-            txtSearch.Text = string.Empty;
-            GetData();
-        }
-
-        /// <summary>
-        /// search data paging update
->>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void txtSearch_TextChanged(object sender, EventArgs e)
         {
             da = Services.Salutation.SalutationService.GetSearchData(txtSearch.Text);
@@ -197,21 +180,10 @@ namespace SampleTaskList.Views.Salutation
             grvSalutation.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-<<<<<<< HEAD
-        /// <summary>
-        /// clear text box
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void btnClear_Click(object sender, EventArgs e)
         {
-            txtSearch.Text = string.Empty;
+          txtSearch.Text = string.Empty;
             this.GetData();
         }
-
-        #endregion clear and search text changed
-=======
-        #endregion clear and search data paging update
->>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
     }
 }

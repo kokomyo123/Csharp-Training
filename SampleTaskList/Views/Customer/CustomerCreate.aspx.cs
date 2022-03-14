@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace SampleTaskList.Views.Customer
 {
     public partial class CustomerCreate : System.Web.UI.Page
     {
-        private Models.Customer.Customer customermodel = new Models.Customer.Customer();
-        private DataTable da = new DataTable();
+        Models.Customer.Customer customermodel = new Models.Customer.Customer();
+        DataTable da = new DataTable();
 
         #region binding data and getting data
-
         /// <summary>
         /// binding data and getting data
         /// </summary>
@@ -52,11 +56,9 @@ namespace SampleTaskList.Views.Customer
                 }
             }
         }
-
-        #endregion binding data and getting data
+        #endregion
 
         #region InsertData
-
         /// <summary>
         /// InsertData
         /// </summary>
@@ -66,11 +68,9 @@ namespace SampleTaskList.Views.Customer
             customermodel.FullName = txtName.Text;
             customermodel.Address = txtAddress.Text;
         }
-
-        #endregion InsertData
+        #endregion
 
         #region UpdateData
-
         /// <summary>
         /// UpdateData
         /// </summary>
@@ -81,11 +81,9 @@ namespace SampleTaskList.Views.Customer
             customermodel.FullName = txtName.Text;
             customermodel.Address = txtAddress.Text;
         }
-
-        #endregion UpdateData
+        #endregion
 
         #region binding salutation
-
         /// <summary>
         /// binding salutation
         /// </summary>
@@ -100,11 +98,9 @@ namespace SampleTaskList.Views.Customer
                 ddlSalutation.DataBind();
             }
         }
-
-        #endregion binding salutation
+        #endregion
 
         #region creating and updating customer
-
         /// <summary>
         /// creating and updating customer
         /// </summary>
@@ -168,12 +164,10 @@ namespace SampleTaskList.Views.Customer
                     }
                 }
             }
-        }
-
-        #endregion creating and updating customer
+         }
+        #endregion
 
         #region back and clear
-
         /// <summary>
         /// back to list page
         /// </summary>
@@ -193,7 +187,6 @@ namespace SampleTaskList.Views.Customer
             txtAddress.Text = string.Empty;
             txtName.Text = string.Empty;
         }
-
-        #endregion back and clear
+        #endregion
     }
 }

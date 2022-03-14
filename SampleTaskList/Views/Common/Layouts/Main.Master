@@ -4,119 +4,178 @@
 
 <html>
 <head runat="server">
-
+   
     <title>Movie Renting</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
+   
     </asp:ContentPlaceHolder>
 
-    <link href="<%=Page.ResolveUrl("~/Resources/css/lib/bootstrap.min.css")%>" rel="stylesheet">
+     
+     <link href="<%=Page.ResolveUrl("~/Resources/css/lib/bootstrap.min.css")%>" rel="stylesheet">
     <link href="<%=Page.ResolveUrl("~/Resources/css/style.css")%>" rel="stylesheet">
     <script src="<%=Page.ResolveUrl("~/Resources/js/lib/bootstrap.min.js")%>"></script>
-    <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
+      <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
+ 
 
     <style>
-        .AlertMessage {
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            top: 60px;
-            left: 20px;
-            animation: fadeInDown 0.8s;
-        }
+ .AlertMessage {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 60px;
+    left: 20px;
+    animation:fadeInDown 0.8s;
+}
+ @keyframes fadeInDown {
+   0% {
+      opacity: 0;
+      transform: translateY(-20px);
+   }
+   100% {
+      opacity: 1;
+      transform: translateY(0);
+   }
+} 
+  
+ .main-page{
+     display:block;
+     width: 70%;
+    margin:0 auto;
+    background-color:white;
+    padding:10px;
+}
+  .searchlabel{
+    font-size:16px;
+}
 
-        @keyframes fadeInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
+ .dataTables_length{ font-size:17px;margin-top:13px;font-weight:normal;}
+ .dataTables_length select{width:45px;height:40px;text-align:center;}
+ .dataTables_wrapper .dataTables_paginate .paginate_button, .dataTables_wrapper .dataTables_paginate .paginate_button {
+  display: inline-block;
+  font-size:17px;
+  font-weight:bolder;
+  margin-top:8px;
+}
 
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
-        .main-page {
-            display: block;
-            width: 70%;
-            margin: 0 auto;
-            background-color: white;
-            padding: 10px;
-        }
-    </style>
+  </style>
+    
 </head>
 <body class="bg-info">
     <form id="form1" runat="server">
         <nav class="navbar navbar-dark bg-primary">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <img src="../../../Resources/image/movierent.png" alt="logo" height="80px" width="80px" class="movielogo" />
-                </div>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+          <img src="../../../Resources/image/movierent.png" alt="logo" height="80px" width="80px" class="movielogo"/>
+          
+    </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="navbarlink collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a class="nav-link" runat="server" href="../../Customer/CustomerList.aspx">Customer</a></li>
-                        <li><a class="nav-link" runat="server" href="../../Movie/MovieList.aspx">Movie</a></li>
-                        <li><a class="nav-link" runat="server" href="../../Salutation/SalutationList.aspx">Salutation</a></li>
-                        <li><a class="nav-link" runat="server" href="../../MovieRenting/MovieRentingList.aspx">Movie Renting List</a></li>
-                        <li>
-                            <asp:LinkButton ID="btnLogout" runat="server" class="nav-link" OnClick="btnLogout_Click">Logout</asp:LinkButton></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbarlink collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a class="nav-link" runat="server" href="../../Customer/CustomerList.aspx">Customer</a></li>
+       <li><a class="nav-link" runat="server" href="../../Movie/MovieList.aspx">Movie</a></li>
+          <li><a class="nav-link" runat="server" href="../../Salutation/SalutationList.aspx">Salutation</a></li>
+           <li><a class="nav-link" runat="server" href="../../MovieRenting/MovieRentingList.aspx">Movie Renting List</a></li>
+            <li>
+                <asp:LinkButton ID="btnLogout" runat="server" class="nav-link" OnClick="btnLogout_Click">Logout</asp:LinkButton></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  
+       </div>  <!-- /.container-fluid -->
+</nav>
         <div class="main-page">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-        </div>
-
+                </div>
+    
         <footer class="bg-primary">
             <h5 class="text-center">Copyright © <%=DateTime.Now.Year%> Movie Renting Company</h5>
         </footer>
+   
+    <script src="<%=Page.ResolveUrl("~/Resources/js/lib/bootstrap.min.js")%>"></script>
+         <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
+     
 
-        <script src="<%=Page.ResolveUrl("~/Resources/js/lib/bootstrap.min.js")%>"></script>
-        <script src="<%=Page.ResolveUrl("~/Resources/js/lib/jquery.js")%>"></script>
     </form>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript">
-        function HideLabel() {
-            document.getElementById("AlertMsg").style.display = "none";
-        }
-        setTimeout("HideLabel();", 3000);
+   
+       <script type="text/javascript">
+           function HideLabel() {
+               document.getElementById("AlertMsg").style.display = "none";
+           }
+           setTimeout("HideLabel();", 3000);
 
-        $(function () {
-            $(".gvSalutation,.gvCustomer,.gvMovie,.gvMovierent").DataTable(
-                {
-<<<<<<< HEAD
-                    "dom": '<"top"i>rt<"bottom"flp><"clear">',
-=======
->>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
-                    searching: false,
-                    bLengthChange: true,
-                    lengthMenu: [[5, 10, -1], [5, 10, "All"]],
-                    bFilter: true,
-                    bSort: true,
-<<<<<<< HEAD
-                    bPaginate: true,
-                    bInfo: false
-=======
-                    bPaginate: true
->>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
-                });
-        });
-    </script>
+           $(function () {
+               $(".gvCustomer").DataTable(
+                   {
+                       'columnDefs': [{
+                           'targets': [4, 5],
+                           'orderable': false,
+                       }],
+                       "dom": '<"top"i>rt<"bottom"flp><"clear">',
+                       searching: false,
+                       bLengthChange: true,
+                       lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+                       bFilter: true,
+                       bSort: true,
+                       bPaginate: true,
+                       bInfo: false,
+                       language: {
+                           lengthMenu: "<span style='padding-right:15px'>Page Size</span>_MENU_"
+                       }
+
+                   });
+               $(".gvSalutation,.gvMovie").DataTable(
+                   {
+                       'columnDefs': [{
+                           'targets': [2, 3],
+                           'orderable': false,
+                       }],
+                       "dom": '<"top"i>rt<"bottom"flp><"clear">',
+                       searching: false,
+                       bLengthChange: true,
+                       lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+                       bFilter: true,
+                       bSort: true,
+                       bPaginate: true,
+                       bInfo: false,
+                       language: {
+                           lengthMenu: "<span style='padding-right:15px'>Page Size</span>_MENU_"
+                       }
+                   });
+
+               $(".gvMovierent").DataTable(
+                   {
+                       'columnDefs': [{
+                           'targets': [5, 6],
+                           'orderable': false,
+                       }],
+                       "dom": '<"top"i>rt<"bottom"flp><"clear">',
+                       searching: false,
+                       bLengthChange: true,
+                       lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+                       bFilter: true,
+                       bSort: true,
+                       bPaginate: true,
+                       bInfo: false,
+                       language: {
+                           lengthMenu: "<span style='padding-right:15px'>Page Size</span>_MENU_"
+                       }
+                   });
+           });
+          
+
+       </script>
 </body>
 </html>

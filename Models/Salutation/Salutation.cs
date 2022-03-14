@@ -1,24 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Models.Salutation
 {
-    public class Salutation
+   public class Salutation
     {
         #region Local variable and Constant Declaration
-
         /// <summary>
         /// Salutation Variables
-        /// </summary>
+        /// </summary>		
         private int _id;
-
         private string _salutation;
-
-        #endregion Local variable and Constant Declaration
+        #endregion
 
         #region Constructor and Destructor
-
         /// <summary>
-        ///Constructor and Destructor for Salutation Variables
+        ///Constructor and Destructor for Salutation Variables 
         /// </summary>
         public void PostData()
         {
@@ -31,11 +31,9 @@ namespace Models.Salutation
             _id = id;
             _salutation = salutation;
         }
-
-        #endregion Constructor and Destructor
+        #endregion
 
         #region Properties Assigning and Retrieving
-
         /// <summary>
         /// Gets or sets the <b>_ID</b> attribute value.
         /// </summary>
@@ -69,6 +67,6 @@ namespace Models.Salutation
             }
         }
 
-        #endregion Properties Assigning and Retrieving
+        #endregion
     }
 }

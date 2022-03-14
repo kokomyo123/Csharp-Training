@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace SampleTaskList.Views.MovieRenting
 {
     public partial class MovieRentingCreate : System.Web.UI.Page
     {
-        private Models.MovieRenting.MovieRent movierentmodel = new Models.MovieRenting.MovieRent();
-        private DataTable da = new DataTable();
+        Models.MovieRenting.MovieRent movierentmodel = new Models.MovieRenting.MovieRent();
+        DataTable da = new DataTable();
 
         #region data binding and getting data
-
         /// <summary>
         /// Data binding and get data
         /// </summary>
@@ -52,11 +56,9 @@ namespace SampleTaskList.Views.MovieRenting
                 }
             }
         }
-
-        #endregion data binding and getting data
+        #endregion
 
         #region InsertData
-
         /// <summary>
         /// InsertData
         /// </summary>
@@ -65,11 +67,10 @@ namespace SampleTaskList.Views.MovieRenting
             movierentmodel.MovieID = Convert.ToInt32(ddlMovie.SelectedValue);
             movierentmodel.CustomerID = Convert.ToInt32(ddlCustomer.SelectedValue);
         }
+        #endregion
 
-        #endregion InsertData
 
         #region UpdateData
-
         /// <summary>
         /// UpdateData
         /// </summary>
@@ -79,11 +80,9 @@ namespace SampleTaskList.Views.MovieRenting
             movierentmodel.MovieID = Convert.ToInt32(ddlMovie.SelectedValue);
             movierentmodel.CustomerID = Convert.ToInt32(ddlCustomer.SelectedValue);
         }
-
-        #endregion UpdateData
+        #endregion
 
         #region binding movie and customer
-
         /// <summary>
         /// binding movie list
         /// </summary>
@@ -111,13 +110,11 @@ namespace SampleTaskList.Views.MovieRenting
                 ddlCustomer.DataValueField = "id";
                 ddlCustomer.DataTextField = "full_name";
                 ddlCustomer.DataBind();
-            }
+             }
         }
-
-        #endregion binding movie and customer
+        #endregion
 
         #region adding and updating
-
         /// <summary>
         /// adding and updating movie rent
         /// </summary>
@@ -180,11 +177,9 @@ namespace SampleTaskList.Views.MovieRenting
                 }
             }
         }
-
-        #endregion adding and updating
+        #endregion
 
         #region clear and back
-
         /// <summary>
         /// clear form
         /// </summary>
@@ -205,7 +200,6 @@ namespace SampleTaskList.Views.MovieRenting
         {
             Response.Redirect("MovieRentingList.aspx");
         }
-
-        #endregion clear and back
+        #endregion
     }
 }

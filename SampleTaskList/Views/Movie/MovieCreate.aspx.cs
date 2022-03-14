@@ -1,17 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace SampleTaskList.Views.Movie
 {
     public partial class MovieCreate : System.Web.UI.Page
     {
-        private Models.Movie.Movie moviemodel = new Models.Movie.Movie();
-        private Services.Movie.MovieService movieservice = new Services.Movie.MovieService();
-        private DataTable da = new DataTable();
+        Models.Movie.Movie moviemodel = new Models.Movie.Movie();
+        Services.Movie.MovieService movieservice = new Services.Movie.MovieService();
+        DataTable da = new DataTable();
 
         #region binding data and getting data
-
         /// <summary>
         /// binding data and getting data
         /// </summary>
@@ -45,23 +49,19 @@ namespace SampleTaskList.Views.Movie
                 }
             }
         }
-
-        #endregion binding data and getting data
+        #endregion
 
         #region InsertData
-
         /// <summary>
         /// InsertData
         /// </summary>
         private void InsertData()
         {
-            moviemodel.MOVIE = txtMovie.Text;
+           moviemodel.MOVIE = txtMovie.Text;
         }
-
-        #endregion InsertData
+        #endregion
 
         #region UpdateData
-
         /// <summary>
         /// UpdateData
         /// </summary>
@@ -70,11 +70,9 @@ namespace SampleTaskList.Views.Movie
             moviemodel.ID = Convert.ToInt32(hfMovie.Value);
             moviemodel.MOVIE = txtMovie.Text;
         }
-
-        #endregion UpdateData
+        #endregion
 
         #region creating and updating movie
-
         /// <summary>
         /// creating and updating movie
         /// </summary>
@@ -139,11 +137,9 @@ namespace SampleTaskList.Views.Movie
                 }
             }
         }
-
-        #endregion creating and updating movie
+        #endregion
 
         #region clear and back
-
         /// <summary>
         /// clear form
         /// </summary>
@@ -164,6 +160,8 @@ namespace SampleTaskList.Views.Movie
             Response.Redirect("MovieList.aspx");
         }
 
-        #endregion clear and back
+        #endregion
+
+        
     }
 }

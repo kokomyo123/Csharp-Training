@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,16 +13,11 @@ namespace SampleTaskList.Views.MovieRenting
 {
     public partial class MovieRentingList : System.Web.UI.Page
     {
-        #region variable declaration
-
-        private Models.MovieRenting.MovieRent movierentmodel = new Models.MovieRenting.MovieRent();
-        private Services.MovieRenting.MovieRentService movierentservice = new Services.MovieRenting.MovieRentService();
-        private DataTable da = new DataTable();
-
-        #endregion variable declaration
+        Models.MovieRenting.MovieRent movierentmodel = new Models.MovieRenting.MovieRent();
+        Services.MovieRenting.MovieRentService movierentservice = new Services.MovieRenting.MovieRentService();
+        DataTable da = new DataTable();
 
         #region bind data
-
         /// <summary>
         /// bind data
         /// </summary>
@@ -36,11 +34,11 @@ namespace SampleTaskList.Views.MovieRenting
                 GetData();
             }
         }
+        #endregion
 
-        #endregion bind data
+        
 
         #region Get Data
-
         /// <summary>
         /// Get Data
         /// </summary>
@@ -63,10 +61,9 @@ namespace SampleTaskList.Views.MovieRenting
             grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-        #endregion Get Data
+        #endregion
 
         #region search movierent
-
         /// <summary>
         /// search movierent
         /// </summary>
@@ -89,11 +86,9 @@ namespace SampleTaskList.Views.MovieRenting
             grvMovieRent.UseAccessibleHeader = true;
             grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
-
-        #endregion search movierent
+        #endregion
 
         #region movierent add,update,delete
-
         /// <summary>
         /// go to creat page
         /// </summary>
@@ -140,10 +135,10 @@ namespace SampleTaskList.Views.MovieRenting
             Response.Redirect("MovieRentingCreate.aspx?id=" + id);
         }
 
-        #endregion movierent add,update,delete
+        #endregion
+
 
         #region paging
-
         /// <summary>
         /// paging
         /// </summary>
@@ -154,11 +149,10 @@ namespace SampleTaskList.Views.MovieRenting
             grvMovieRent.PageIndex = e.NewPageIndex;
             this.GetData();
         }
+        #endregion
 
-        #endregion paging
 
         #region export database data to excel
-
         /// <summary>
         /// exporting data
         /// </summary>
@@ -178,7 +172,7 @@ namespace SampleTaskList.Views.MovieRenting
                 string filename = Path.Combine(Server.MapPath("~/Download"), DateTime.Now.ToString("dd-MM-yyyy-hh-mm-ss") + "Movierentlist.xls");
                 ExportToExcel(da, filename);
             }
-        }
+          }
 
         /// <summary>
         /// export to excel
@@ -192,8 +186,8 @@ namespace SampleTaskList.Views.MovieRenting
             Strwriter.Write("<font style='font-size:15.0pt; font-family:TimesNewRoman;'>");
             Strwriter.Write("<BR><BR><BR>");
             Strwriter.Write("<Table border='2' bgColor='#ffffff' borderColor='#000000' cellSpacing='0' cellPadding='0' style='font-size:15.0pt; font-family:TimesNewRoman; background:white;'> <TR>");
-            int dtcolumncount = table.Columns.Count;
-            for (int j = 1; j < dtcolumncount; j++)
+             int dtcolumncount = table.Columns.Count;
+            for (int j = 1; j < dtcolumncount-2; j++)
             {
                 Strwriter.Write("<Td style='background:aquamarine;'>");
                 Strwriter.Write("<B>");
@@ -205,12 +199,12 @@ namespace SampleTaskList.Views.MovieRenting
             foreach (DataRow row in table.Rows)
             {
                 Strwriter.Write("<TR>");
-                for (int i = 1; i < table.Columns.Count; i++)
+                for (int i = 1; i < table.Columns.Count-2; i++)
                 {
-                    Strwriter.Write("<Td>");
-                    Strwriter.Write(row[i].ToString());
-                    Strwriter.Write("</Td>");
-                }
+                       Strwriter.Write("<Td>");
+                        Strwriter.Write(row[i].ToString());
+                        Strwriter.Write("</Td>");
+                 }
                 Strwriter.Write("</TR>");
             }
             Strwriter.Write("</Table>");
@@ -221,41 +215,14 @@ namespace SampleTaskList.Views.MovieRenting
             GetData();
         }
 
-        #endregion export database data to excel
+        #endregion
 
-<<<<<<< HEAD
-        #region clear and search text changed
-
-        /// <summary>
-        /// clear text box
-=======
-        #region clear and search paging update
-
-        /// <summary>
-        /// clear data
->>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void btnClear_Click(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
-<<<<<<< HEAD
             this.GetData();
         }
 
-        /// <summary>
-        /// search text box changed
-=======
-            GetData();
-        }
-
-        /// <summary>
-        /// search data paging update
->>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         protected void txtSearch_TextChanged(object sender, EventArgs e)
         {
             da = Services.MovieRenting.MovieRentService.GetSearchData(txtSearch.Text);
@@ -274,11 +241,7 @@ namespace SampleTaskList.Views.MovieRenting
             grvMovieRent.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-<<<<<<< HEAD
-        #endregion clear and search text changed
-
         #region sendEmail
-
         /// <summary>
         /// Sending Email
         /// </summary>
@@ -347,10 +310,6 @@ namespace SampleTaskList.Views.MovieRenting
                 Session["alert-type"] = "success";
             }
         }
-
-        #endregion sendEmail
-=======
-        #endregion clear and search paging update
->>>>>>> c82f9fc2dc6b17d66a4f6e4a3faf02c251b97b58
+        #endregion
     }
 }

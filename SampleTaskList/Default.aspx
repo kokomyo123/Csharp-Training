@@ -3,6 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>Customer Operation</h1>
+       <h1>Customer Operation</h1>
     </div>
+
 </asp:Content>

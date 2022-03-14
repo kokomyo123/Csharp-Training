@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DAOs.Customer
 {
     public class CustomerDao
     {
-        #region Insert/Update/Delete
 
+        #region Insert/Update/Delete
         /// <summary>
         /// Insert Data
         /// </summary>
@@ -73,20 +77,18 @@ namespace DAOs.Customer
                 throw ex;
             }
         }
-
-        #endregion Insert/Update/Delete
+        #endregion
 
         #region Get Data
-
         /// <summary>
         /// Get Data
         /// </summary>
         /// <returns></returns>
-        public static DataTable GetData(string name, string address)
+        public static DataTable GetData(string name,string address)
         {
             try
             {
-                return Common.HelperDao.GetData("Select full_name,address from tbl_customer where full_name='" + name + "' and address='" + address + "'", CommandType.Text);
+                return Common.HelperDao.GetData("Select full_name,address from tbl_customer where full_name='" + name + "' and address='"+address+"'", CommandType.Text);
             }
             catch (Exception ex)
             {
@@ -149,6 +151,6 @@ namespace DAOs.Customer
             }
         }
 
-        #endregion Get Data
+        #endregion
     }
 }

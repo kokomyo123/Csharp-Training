@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace SampleTaskList.Views.Salutation
 {
     public partial class SalutationCreate1 : System.Web.UI.Page
     {
-        private Models.Salutation.Salutation salutationmodel = new Models.Salutation.Salutation();
-        private Services.Salutation.SalutationService salutationservice = new Services.Salutation.SalutationService();
-        private DataTable da = new DataTable();
+        Models.Salutation.Salutation salutationmodel = new Models.Salutation.Salutation();
+        Services.Salutation.SalutationService salutationservice = new Services.Salutation.SalutationService();
+        DataTable da = new DataTable();
 
         #region load Data
 
@@ -45,23 +50,20 @@ namespace SampleTaskList.Views.Salutation
                 }
             }
         }
-
-        #endregion load Data
+        #endregion
 
         #region InsertData
-
         /// <summary>
         /// InsertData
         /// </summary>
         private void InsertData()
         {
-            salutationmodel.SALUTATION = txtSalutation.Text;
+            salutationmodel.SALUTATION= txtSalutation.Text;
         }
+        #endregion
 
-        #endregion InsertData
 
         #region UpdateData
-
         /// <summary>
         /// UpdateData
         /// </summary>
@@ -69,12 +71,11 @@ namespace SampleTaskList.Views.Salutation
         {
             salutationmodel.ID = Convert.ToInt32(hfSalutation.Value);
             salutationmodel.SALUTATION = txtSalutation.Text;
-        }
 
-        #endregion UpdateData
+        }
+        #endregion
 
         #region salutation create,update
-
         /// <summary>
         /// Creating and Updating Salutation
         /// </summary>
@@ -139,10 +140,9 @@ namespace SampleTaskList.Views.Salutation
             }
         }
 
-        #endregion salutation create,update
+        #endregion
 
         #region clear and back
-
         /// <summary>
         /// clear form
         /// </summary>
@@ -163,6 +163,6 @@ namespace SampleTaskList.Views.Salutation
             Response.Redirect("SalutationList.aspx");
         }
 
-        #endregion clear and back
+        #endregion
     }
 }

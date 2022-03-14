@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DAOs.MovieRenting
 {
     public class MovieRentDao
     {
         #region Insert/Update/Delete
-
         /// <summary>
         /// Insert Data
         /// </summary>
@@ -71,20 +74,18 @@ namespace DAOs.MovieRenting
                 throw ex;
             }
         }
-
-        #endregion Insert/Update/Delete
+        #endregion
 
         #region Get Data
-
         /// <summary>
         /// Get Data
         /// </summary>
         /// <returns></returns>
-        public static DataTable GetData(int movieid, int customerid)
+        public static DataTable GetData(int movieid,int customerid)
         {
             try
             {
-                return Common.HelperDao.GetData("Select movie_id,customer_id from tbl_movierenting  where movie_id='" + movieid + "' and customer_id='" + customerid + "'", CommandType.Text);
+                return Common.HelperDao.GetData("Select movie_id,customer_id from tbl_movierenting  where movie_id='" + movieid + "' and customer_id='" +customerid+"'", CommandType.Text);
             }
             catch (Exception ex)
             {
@@ -101,6 +102,7 @@ namespace DAOs.MovieRenting
             try
             {
                 //return Common.HelperDao.GetData("Select tbl_movierenting.id,tbl_salutation.salutation,tbl_customer.full_name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id", CommandType.Text);
+                //return Common.HelperDao.GetData("Select * from GetMovieRentingData", CommandType.Text);
                 return Common.HelperDao.GetData("Select * from GetMovieRentingData", CommandType.Text);
             }
             catch (Exception ex)
@@ -124,8 +126,8 @@ namespace DAOs.MovieRenting
                 }
                 else
                 {
-                    //    return Common.HelperDao.GetData("Select tbl_movierenting.id,tbl_salutation.salutation,tbl_customer.full_name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id AND tbl_customer.full_name ='" + str + "' ", CommandType.Text);
-                    return Common.HelperDao.GetData("Select * from GetMovieRentingData Where Name LIKE'%" + str + "%' ", CommandType.Text);
+                //    return Common.HelperDao.GetData("Select tbl_movierenting.id,tbl_salutation.salutation,tbl_customer.full_name,tbl_customer.address,tbl_movie.movie from tbl_customer,tbl_movierenting,tbl_salutation,tbl_movie Where  tbl_salutation.id = tbl_customer.salutation_id AND tbl_movie.id = tbl_movierenting.movie_id AND tbl_customer.id = tbl_movierenting.customer_id AND tbl_customer.full_name ='" + str + "' ", CommandType.Text);
+                   return Common.HelperDao.GetData("Select * from GetMovieRentingData Where Name LIKE'%" + str + "%' ", CommandType.Text);
                 }
             }
             catch (Exception ex)
@@ -150,6 +152,6 @@ namespace DAOs.MovieRenting
             }
         }
 
-        #endregion Get Data
+        #endregion
     }
 }

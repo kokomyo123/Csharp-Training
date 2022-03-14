@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Models;
 namespace Services.Salutation
 {
     public class SalutationService
     {
-        #region Insert/Update/Delete
 
+        #region Insert/Update/Delete
         /// <summary>
         /// Insert Data
         /// </summary>
@@ -53,11 +57,10 @@ namespace Services.Salutation
                 throw ex;
             }
         }
+        #endregion
 
-        #endregion Insert/Update/Delete
 
-        #region Get Data
-
+        #region Get Data      
         /// <summary>
         /// Get Data
         /// </summary>
@@ -117,7 +120,6 @@ namespace Services.Salutation
                 throw ex;
             }
         }
-
-        #endregion Get Data
+        #endregion
     }
 }
