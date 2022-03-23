@@ -17,8 +17,6 @@ namespace SampleTaskList.Views.User
 
         #endregion variable declaration and page load
 
-
-
         #region checkuser
 
         /// <summary>

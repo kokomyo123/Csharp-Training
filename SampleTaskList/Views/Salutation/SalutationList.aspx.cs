@@ -204,6 +204,5 @@ namespace SampleTaskList.Views.Salutation
         }
 
         #endregion clear text data and search
-
     }
 }

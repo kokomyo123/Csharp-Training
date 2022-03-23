@@ -261,8 +261,6 @@ namespace SampleTaskList.Views.MovieRenting
 
         #endregion clear text data and search
 
-
-
         #region sendEmail
 
         /// <summary>
